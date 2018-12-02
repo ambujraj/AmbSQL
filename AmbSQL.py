@@ -42,42 +42,34 @@ def main():
                 c.execute("CREATE TABLE IF NOT EXISTS "+tname+" (id INTEGER PRIMARY KEY, "+c1+" TEXT, "+c2+" TEXT, "+c3+" TEXT)")
                 db.commit()
                 print("TABLE CREATED!!")
-                del tname
-                del c1
-                del c2
-                del c3
+                del tname,c1,c2,c3
         elif(command.startswith("insertvalues(") and command.endswith(")")):
             if(cnt != 1):
                 print("ERROR: Not Connected !!")
             else:
                 abc = command[13:-1].upper()
-                x1 = input("Enter 1st Column Value: ")#table name missing
-                x2 = input("2nd Column Value: ")
-                x3 = input("3rd Column Value: ")
+                x1 = input("Enter 1st Column Value: ").lower()#table name missing
+                x2 = input("2nd Column Value: ").lower()
+                x3 = input("3rd Column Value: ").lower()
                 try:
                     c.execute("INSERT INTO "+abc+" VALUES(NULL, ?,?,?)",(x1,x2,x3))
                     db.commit()
                     print("SUCCESSFULL!!")
                 except:
-                    print("Table Not Found!!")
-                del x1
-                del x2
-                del x3
-                del abc
+                    print("ERROR!! Table Not Found!")
+                del x1,x2,x3,abc
         elif(command.startswith("showtable(") and command.endswith(")")):
             if(cnt != 1):
                 print("ERROR: Not Connected !!")
             else:
-                abc = command[10:-1].upper
+                abc = command[10:-1].upper()
                 x = c.execute("select * from "+abc)
                 row = x.fetchone()
     
                 while row is not None:
                     print(row)
                     row = x.fetchone()
-                del abc
-                del x
-                del row
+                del abc,x,row
         elif(command=="clear()"):
             os.system("cls")
             main()
