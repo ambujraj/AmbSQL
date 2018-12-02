@@ -14,7 +14,6 @@ path = 'C:\\AmbSQL\\'
 db = sqlite3.connect(path+"dtables.db")
 c = db.cursor()
 
-
 def main(cnt):
     os.system("cls")
     print("AmbSQL shell version: 1.0.2.0")
@@ -96,19 +95,25 @@ def main(cnt):
                             print("Error!! Please Enter the Table name!")
                         del abc
                     except:
-                        print("Error!! Table Not Found!")
-                    # x = c.execute("select * from "+abc)
-                    # row = x.fetchone()
-
-                    # while row is not None:
-                    #     print(row)
-                    #     row = x.fetchone()
-                
+                        print("Error!! Table Not Found!")    
             elif(command == "clear()"):
                 if(cnt != 1):
                     print("ERROR: Not Connected !!")
                 else:
                     main(1)
+            elif(command == "docs()"):
+                print("")
+                print("Copyright (c) 2018, Ambuj. All rights reserved.")
+                print("")
+                print("\tconnect                    - To login to database")
+                print("\tcreateTable()              - To create new table")
+                print("\tinsertValues(<table_name>) - To enter the values in Table")
+                print("\tshowTable(<table_name>)    - To show the Table with values")
+                print("\tclear()                    - To clear the Screen")
+                print("")
+                print("\tnote=> Username: 'system', password: '123'") 
+            else:
+                print("Command not found!!(please ensure you include '()' at the end)")
         except KeyboardInterrupt:
             os.system("cls")
             sys.exit(0)
