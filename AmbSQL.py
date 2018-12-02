@@ -2,6 +2,7 @@ import os
 import sqlite3
 import string
 import getpass
+#USE PANDAS DB
 os.system("title "+"AmbSQL")
 try:
     os.system("IF NOT EXIST C:\AmbSQL MKDIR C:\AmbSQL")
