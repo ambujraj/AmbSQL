@@ -37,21 +37,33 @@ def main(cnt):
                 else:
                     print("Username or Password entered wrong!!")
                 del usern
-            elif(command == "createtable()"):
+            elif(command.startswith("createtable(") and command.endswith(")")):
                 if(cnt != 1):
                     print("ERROR: Not Connected !!")
                 else:
-                    tname = input("Enter table name: ").upper().strip()
-                    c1 = input("Enter 1st Column name: ").upper().strip()
-                    c2 = input("2nd Column name: ").upper().strip()
-                    c3 = input("3rd Column name: ").upper().strip()
-                    try:
-                        c.execute("CREATE TABLE "+tname + " (id INTEGER PRIMARY KEY, "+c1+" TEXT, "+c2+" TEXT, "+c3+" TEXT)")
-                        db.commit()
-                        print("TABLE CREATED!!")
-                    except:
-                        print("ERROR!! Table Name already exists!!")
-                    del tname, c1, c2, c3
+                    abc = command[12:-1].upper()
+                    if(len(abc)!=0):
+                        l1 = abc.split(",")
+                        if(len(l1)>=2):
+                            tname = l1[0]
+                            a = []
+                            for i in range(1,len(l1)):
+                                a.insert(i-1,l1[i].lower().strip())
+                            try:
+                                c.execute("CREATE TABLE "+tname+" (id INTEGER PRIMARY KEY)")
+                                for j in range(1,len(l1)):
+                                    c.execute("ALTER TABLE "+tname+" ADD "+a[j-1]+" TEXT")
+                                db.commit()
+                                print("TABLE CREATED!!")
+                            except:
+                                print("ERROR!! Table Name already exists!")
+                            del tname,a
+                        else:
+                            print("ERROR!! There should be atleast two Parameters!")
+                        del l1
+                    else:
+                        print("ERROR!! Please Enter the Table name!")
+                    del abc
             elif(command.startswith("insertvalues(") and command.endswith(")")):
                 if(cnt != 1):
                     print("ERROR: Not Connected !!")
@@ -105,12 +117,12 @@ def main(cnt):
                 print("")
                 print("Copyright (c) 2018, Ambuj. All rights reserved.")
                 print("")
-                print("\tconnect                                            - To login to database")
-                print("\tcreateTable()                                      - To create new table")
-                print("\tinsertValues(<table_name>)                         - To enter the values in Table")
-                print("\tshowTable(<table_name>)                            - To show the Table with values")
-                print("\talterTable(<old-table_name> , <new-table_name>)    - To rename Table Name")
-                print("\tclear()                                            - To clear the Screen")
+                print("\tconnect                                                            - To login to database")
+                print("\tcreateTable(<table-name>, <column-name1> , <column-name2>, ....)   - To create new table")
+                print("\tinsertValues(<table_name>)                                         - To enter the values in Table")
+                print("\tshowTable(<table_name>)                                            - To show the Table with values")
+                print("\talterTable(<old-table_name> , <new-table_name>)                    - To rename Table Name")
+                print("\tclear()                                                            - To clear the Screen")
                 print("")
                 print("\tnote=> Username: 'system', password: '123'")
             elif(command.startswith("altertable(") and command.endswith(")")):
