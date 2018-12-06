@@ -159,6 +159,7 @@ def main(cnt):
                 print("Command not found!!(please ensure you include '()' at the end)")
         except KeyboardInterrupt:
             print("KEYBOARD INTERRUPT")
+            db.close()
             os.system("cls")
             sys.exit(0)
 main(0)
