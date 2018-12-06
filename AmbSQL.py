@@ -15,6 +15,7 @@ db = sqlite3.connect(path+"dtables.db")
 c = db.cursor()
 dbu = sqlite3.connect(path+"duser.db")
 cu = dbu.cursor()
+
 def main(cnt):
     os.system("cls")
     print("AmbSQL shell version: 1.0.2.0")
@@ -42,22 +43,22 @@ def main(cnt):
                     print("ERROR: Not Connected !!")
                 else:
                     abc = command[12:-1].upper()
-                    if(len(abc)!=0):
+                    if(len(abc) != 0):
                         l1 = abc.split(",")
-                        if(len(l1)>=2):
+                        if(len(l1) >= 2):
                             tname = l1[0]
                             a = []
-                            for i in range(1,len(l1)):
-                                a.insert(i-1,l1[i].lower().strip())
+                            for i in range(1, len(l1)):
+                                a.insert(i-1, l1[i].lower().strip())
                             try:
-                                c.execute("CREATE TABLE "+tname+" (id INTEGER PRIMARY KEY)")
-                                for j in range(1,len(l1)):
-                                    c.execute("ALTER TABLE "+tname+" ADD "+a[j-1]+" TEXT")
+                                c.execute("CREATE TABLE "+tname +" (id INTEGER PRIMARY KEY)")
+                                for j in range(1, len(l1)):
+                                    c.execute("ALTER TABLE "+tname +" ADD "+a[j-1]+" TEXT")
                                 db.commit()
                                 print("TABLE CREATED!!")
                             except:
                                 print("ERROR!! Table Name already exists!")
-                            del tname,a
+                            del tname, a
                         else:
                             print("ERROR!! There should be atleast two Parameters!")
                         del l1
@@ -68,25 +69,28 @@ def main(cnt):
                 if(cnt != 1):
                     print("ERROR: Not Connected !!")
                 else:
-                    try:
-                        abc = command[13:-1].upper().strip()
-                        if(len(abc) != 0):
-                            # table name missing
-                            x1 = input("Enter 1st Column Value: ").lower().strip()
-                            x2 = input("2nd Column Value: ").lower().strip()
-                            x3 = input("3rd Column Value: ").lower().strip()
+                    abc = command[13:-1].upper().strip()
+                    if(len(abc) != 0):
+                        l1 = abc.split(",")
+                        if(len(l1) >= 2):
+                            tname = l1[0]
+                            a = []
+                            for i in range(1, len(l1)):
+                                a.insert(i-1, l1[i].lower().strip())
+                            at = tuple(a)
                             try:
-                                c.execute("INSERT INTO "+abc +" VALUES(NULL,?,?,?)", (x1, x2, x3))
+                                c.execute("INSERT INTO "+tname+" VALUES(NULL"+",?"*(len(l1)-1)+")", at)
                                 db.commit()
                                 print("SUCCESSFULL!!")
                             except:
-                                print("ERROR!! Table Not Found!")
-                            del x1, x2, x3
+                                print("ERROR!! Invalid Entry!")
+                            del at, a, tname
                         else:
-                            print("ERROR!! Please Enter the Table name!")
-                        del abc
-                    except:
-                        print("ERROR!! Table Not Found!")
+                            print("ERROR!! There should be atleast two Parameters!")
+                        del l1
+                    else:
+                        print("ERROR!! Please Enter the Table name!")
+                    del abc
             elif(command.startswith("showtable(") and command.endswith(")")):
                 if(cnt != 1):
                     print("ERROR: Not Connected !!")
@@ -99,8 +103,8 @@ def main(cnt):
                             for table_name in tables:
                                 table_name = table_name[0]
                                 table = pd.read_sql_query("SELECT * from %s" % table_name, db)
-                                table.to_csv(path+table_name +'.csv', index_label='index')
-                            pdr = pd.read_csv(path+abc+'.csv', usecols=[1, 2, 3, 4])
+                                table.to_csv(path+table_name +'.csv', index=None)
+                            pdr = pd.read_csv(path+abc+'.csv')
                             print(pdr)
                             del pdr
                         else:
@@ -118,8 +122,8 @@ def main(cnt):
                 print("Copyright (c) 2018, Ambuj. All rights reserved.")
                 print("")
                 print("\tconnect                                                            - To login to database")
-                print("\tcreateTable(<table-name>, <column-name1> , <column-name2>, ....)   - To create new table")
-                print("\tinsertValues(<table_name>)                                         - To enter the values in Table")
+                print("\tcreateTable(<table-name>, <column1-name> , <column2-name>, ....)   - To create new table")
+                print("\tinsertValues(<table_name>, <column1-value> , <column2-value>, ...) - To enter the values in Table")
                 print("\tshowTable(<table_name>)                                            - To show the Table with values")
                 print("\talterTable(<old-table_name> , <new-table_name>)                    - To rename Table Name")
                 print("\tclear()                                                            - To clear the Screen")
@@ -131,15 +135,15 @@ def main(cnt):
                 else:
                     abc = command[11:-1].upper()
                     try:
-                        if(len(abc)!=0):
+                        if(len(abc) != 0):
                             l1 = abc.split(",")
-                            if(len(l1)==2):
+                            if(len(l1) == 2):
                                 old1 = l1[0].strip()
                                 new1 = l1[1].strip()
-                                c.execute("ALTER TABLE "+old1+" RENAME TO "+new1)
+                                c.execute("ALTER TABLE "+old1 +" RENAME TO "+new1)
                                 db.commit()
-                                os.system("IF EXIST C:\AmbSQL\\"+old1+".csv "+"DEL /F C:\AmbSQL\\"+old1+".csv")
-                                print("Table name Updated from "+old1+" to "+new1)
+                                os.system("IF EXIST C:\AmbSQL\\"+old1 +".csv "+"DEL /F C:\AmbSQL\\"+old1+".csv")
+                                print("Table name Updated from " +old1+" to "+new1)
                                 del old1, new1
                             else:
                                 print("ERROR!! There should be two Parameters!")
@@ -148,7 +152,7 @@ def main(cnt):
                     except:
                         print("ERROR!! Invalid Table Name!")
                     del abc
-            elif(command=="logout()"):
+            elif(command == "logout()"):
                 cnt = 0
                 print("Successfully Logged Out!!")
             else:
@@ -157,6 +161,4 @@ def main(cnt):
             print("KEYBOARD INTERRUPT")
             os.system("cls")
             sys.exit(0)
-
-
 main(0)
