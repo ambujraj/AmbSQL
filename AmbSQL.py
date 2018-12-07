@@ -52,16 +52,13 @@ def main(cnt):
                             for i in range(1, len(l1)):
                                 a.insert(i - 1, l1[i].lower().strip())
                             try:
-                                c.execute("CREATE TABLE " + tname +
-                                          " (id INTEGER PRIMARY KEY)")
+                                c.execute("CREATE TABLE " + tname +" (id INTEGER PRIMARY KEY)")
                                 for j in range(1, len(l1)):
-                                    c.execute("ALTER TABLE " + tname +
-                                              " ADD " + a[j - 1] + " TEXT")
+                                    c.execute("ALTER TABLE " + tname +" ADD " + a[j - 1] + " TEXT")
                                 db.commit()
                                 print("TABLE CREATED!!")
                             except:
-                                print(
-                                    "ERROR!! Table Name and Attribute name should be unique!")
+                                print("ERROR!! Table Name and Attribute name should be unique!")
                             del tname, a
                         else:
                             print("ERROR!! There should be atleast two Parameters!")
@@ -83,8 +80,7 @@ def main(cnt):
                                 a.insert(i-1, str(l1[i]).lower().strip())
                             at = tuple(a)
                             try:
-                                c.execute("INSERT INTO "+tname +
-                                          " VALUES(NULL"+",?"*(len(l1)-1)+")", at)
+                                c.execute("INSERT INTO "+tname +" VALUES(NULL"+",?"*(len(l1)-1)+")", at)
                                 db.commit()
                                 print("One row inserted!!")
                             except:
@@ -103,15 +99,12 @@ def main(cnt):
                     try:
                         abc = command[10:-1].upper().strip()
                         if(len(abc) != 0):
-                            c.execute(
-                                "SELECT name FROM sqlite_master WHERE type='table';")
+                            c.execute("SELECT name FROM sqlite_master WHERE type='table';")
                             tables = c.fetchall()
                             for table_name in tables:
                                 table_name = table_name[0]
-                                table = pd.read_sql_query(
-                                    "SELECT * from %s" % table_name, db)
-                                table.to_csv(path+table_name +
-                                             '.csv', index=None)
+                                table = pd.read_sql_query("SELECT * from %s" % table_name, db)
+                                table.to_csv(path+table_name +'.csv', index=None)
                             pdr = pd.read_csv(path+abc+'.csv')
                             print(pdr)
                             del pdr
@@ -132,8 +125,7 @@ def main(cnt):
                             try:
                                 c.execute("DELETE FROM "+tname)
                                 db.commit()
-                                os.system("IF EXIST C:\AmbSQL\\" + tname +
-                                          ".csv " + "DEL /F C:\AmbSQL\\" + tname + ".csv")
+                                os.system("IF EXIST C:\AmbSQL\\" + tname +".csv " + "DEL /F C:\AmbSQL\\" + tname + ".csv")
                                 print("All Rows Deleted!!")
                             except:
                                 print("ERROR!! Invalid Table name!")
@@ -146,22 +138,18 @@ def main(cnt):
                                 col = dd[0].strip()
                                 valued = dd[1].strip()
                                 try:
-                                    c.execute("DELETE FROM "+tname +
-                                              " WHERE "+col+"="+valued+";")
+                                    c.execute("DELETE FROM "+tname +" WHERE "+col+"="+valued+";")
                                     db.commit()
-                                    os.system(
-                                        "IF EXIST C:\AmbSQL\\" + tname + ".csv " + "DEL /F C:\AmbSQL\\" + tname + ".csv")
+                                    os.system("IF EXIST C:\AmbSQL\\" + tname + ".csv " + "DEL /F C:\AmbSQL\\" + tname + ".csv")
                                     print("Row(s) Deleted!!")
                                 except:
                                     print("ERROR!! Invalid Parameters!")
                                 del col, valued
                             else:
-                                print(
-                                    "ERROR!! Invalid Equivalence of Row and Value!")
+                                print("ERROR!! Invalid Equivalence of Row and Value!")
                             del dd, drow, tname
                         else:
-                            print(
-                                "ERROR!! Entry should contain one or two parameters!")
+                            print("ERROR!! Entry should contain one or two parameters!")
                     else:
                         print("ERROR!! Entry should have atleast one parameter!")
             elif(command == "clear()"):
@@ -173,22 +161,15 @@ def main(cnt):
                 print("")
                 print("Copyright (c) 2018, Ambuj. All rights reserved.")
                 print("")
-                print(
-                    "\tconnect                                                            - To login to Database")
-                print(
-                    "\tcreateTable(<table-name>, <column1-name> , <column2-name>, ....)   - To create new Table")
-                print(
-                    "\tinsertValues(<table_name>, <column1-value> , <column2-value>, ...) - To enter the values in Table")
-                print(
-                    "\tshowTable(<table_name>)                                            - To show the Table with values")
-                print(
-                    "\tdeleteTable(<table_name>)                                          - To truncate the Table")
-                print(
-                    "\tdeleteTable(<table_name> , <condition>)                            - To delete row(s) from Table")
-                print(
-                    "\talterTable(<old-table_name> , <new-table_name>)                    - To rename Table Name")
-                print(
-                    "\tclear()                                                            - To clear the Screen")
+                print("\tconnect                                                            - To login to Database")
+                print("\tcreateTable(<table-name>, <column1-name> , <column2-name>, ....)   - To create new Table")
+                print("\tinsertValues(<table_name>, <column1-value> , <column2-value>, ...) - To enter the values in Table")
+                print("\tshowTable(<table_name>)                                            - To show the Table with values")
+                print("\tdeleteTable(<table_name>)                                          - To truncate the Table")
+                print("\tdeleteTable(<table_name> , <condition>)                            - To delete row(s) from Table")
+                print("\tdropTable(<table_name>)                                            - To drop the Table")
+                print("\talterTable(<old-table_name> , <new-table_name>)                    - To rename Table Name")
+                print("\tclear()                                                            - To clear the Screen")
                 print("")
                 print("\tnote=> Username: 'system', password: '123'")
             elif(command.startswith("altertable(") and command.endswith(")")):
@@ -202,11 +183,9 @@ def main(cnt):
                             if(len(l1) == 2):
                                 old1 = l1[0].strip()
                                 new1 = l1[1].strip()
-                                c.execute("ALTER TABLE "+old1 +
-                                          " RENAME TO "+new1)
+                                c.execute("ALTER TABLE "+old1 +" RENAME TO "+new1)
                                 db.commit()
-                                os.system("IF EXIST C:\AmbSQL\\"+old1 +
-                                          ".csv "+"DEL /F C:\AmbSQL\\"+old1+".csv")
+                                os.system("IF EXIST C:\AmbSQL\\"+old1 +".csv "+"DEL /F C:\AmbSQL\\"+old1+".csv")
                                 print("Table name Updated from " +
                                       old1+" to "+new1)
                                 del old1, new1
@@ -243,6 +222,4 @@ def main(cnt):
             db.close()
             os.system("cls")
             sys.exit(0)
-
-
 main(0)
