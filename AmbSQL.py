@@ -92,6 +92,24 @@ def main(cnt):
                     else:
                         print("ERROR!! Please Enter the Table name!")
                     del abc
+            elif(command.startswith("showschema(") and command.endswith(")")):
+                if(cnt != 1):
+                    print("ERROR: Not Connected !!")
+                else:
+                    abc = command[11:-1].upper().strip()
+                    if(len(abc)!=0):
+                        try:
+                            c.execute("pragma table_info('"+abc+"')")
+                            abv = c.fetchall()
+                            print("       cid\t    name\t       pk")
+                            print("----------\t--------\t---------")
+                            for p,q,r,s,t,u in abv:
+                                print(" "*(10-len(str(p)))+str(p)+"\t"+" "*(8-len(str(q)))+str(q)+"\t"+" "*(9-len(str(u)))+str(u))
+                            print("")
+                        except:
+                            print("ERROR!! Table Not Found!")
+                    else:
+                        print("ERROR!! Please Enter the Table name!")
             elif(command.startswith("showtable(") and command.endswith(")")):
                 if(cnt != 1):
                     print("ERROR: Not Connected !!")
@@ -180,6 +198,7 @@ def main(cnt):
                 print("\tconnect                                                            - To login to Database")
                 print("\tcreateTable(<table-name>, <column1-name> , <column2-name>, ....)   - To create new Table")
                 print("\tinsertValues(<table_name>, <column1-value> , <column2-value>, ...) - To enter the values in Table")
+                print("\tshowSchema(<table_name>)                                           - To show the Table schema")
                 print("\tshowTable(<table_name>)                                            - To show the Table with values")
                 print("\tdeleteTable(<table_name>)                                          - To truncate the Table")
                 print("\tdeleteTable(<table_name> , <condition>)                            - To delete row(s) from Table")
