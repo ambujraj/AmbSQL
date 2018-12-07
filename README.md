@@ -6,13 +6,13 @@
 
 # Documentation
 > connect                                                            - To login to Database<br>
-> createTable(<table_name>, <column1-name> , <column2-name>, ....)   - To create new Table<br>
-> insertValues(<table_name>, <column1-value> , <column2-value>, ...) - To enter the values in Table<br>
+> createTable(<table_name>, <column1_name> , <column2_name>, ....)   - To create new Table<br>
+> insertValues(<table_name>, <column1_value> , <column2_value>, ...) - To enter the values in Table<br>
 > showTable(<table_name>)                                            - To show the Table with values<br>
 > deleteTable(<table_name>)                                          - To truncate the Table<br>
 > deleteTable(<table_name> , <condition>)                            - To delete row(s) from Table<br>
 > droptable(<table_name>)                                            - To drop the Table<br>
-> alterTable(<old-table_name> , <new-table_name>)                    - To rename Table Name<br>
+> alterTable(<old_table_name> , <new_table_name>)                    - To rename Table Name<br>
 > clear()                                                            - To clear the Screen<br>
 
 # Installation
