@@ -113,24 +113,26 @@ def main(cnt):
             elif(command.startswith("showtable(") and command.endswith(")")):
                 if(cnt != 1):
                     print("ERROR: Not Connected !!")
+                
                 else:
                     try:
                         abc = command[10:-1].upper().strip()
                         if(len(abc) != 0):
-                            '''
                             c.execute("pragma table_info('"+abc+"')")
                             abv = c.fetchall()
                             for p,q,r,s,t,u in abv:
-                                print(q, end="\t  ")
+                                print(" "*(9-len(str(q)))+str(q), end="\t")
                             print("")
-                            for p,q,r,s,t,u in abv:
-                                print("-"*len(q), end="\t  ")
+                            
+                            for p, q, r, s, t, u in abv:
+                                print("---------", end="\t")
                             print("")
+                            
                             c.execute("SELECT * FROM "+abc)
                             tables = c.fetchall()
                             for i in tables:
                                 for j in i:
-                                    print(str(j), end="\t  ")
+                                    print(" "*(9-len(str(j)))+str(j), end="\t")
                                 print("")
                             '''
                             c.execute("SELECT name FROM sqlite_master WHERE type='table';")
@@ -142,6 +144,7 @@ def main(cnt):
                             pdr = pd.read_csv(path+abc+'.csv')
                             print(pdr)
                             del pdr
+                            '''
                         else:
                             print("ERROR!! Please Enter the Table name!")
                         del abc
@@ -159,7 +162,7 @@ def main(cnt):
                             try:
                                 c.execute("DELETE FROM "+tname)
                                 db.commit()
-                                os.system("IF EXIST C:\AmbSQL\\" + tname +".csv " + "DEL /F C:\AmbSQL\\" + tname + ".csv")
+                                #os.system("IF EXIST C:\AmbSQL\\" + tname +".csv " + "DEL /F C:\AmbSQL\\" + tname + ".csv")
                                 print("All Rows Deleted!!")
                             except:
                                 print("ERROR!! Invalid Table name!")
@@ -174,7 +177,7 @@ def main(cnt):
                                 try:
                                     c.execute("DELETE FROM "+tname +" WHERE "+col+"="+valued+";")
                                     db.commit()
-                                    os.system("IF EXIST C:\AmbSQL\\" + tname + ".csv " + "DEL /F C:\AmbSQL\\" + tname + ".csv")
+                                    #os.system("IF EXIST C:\AmbSQL\\" + tname + ".csv " + "DEL /F C:\AmbSQL\\" + tname + ".csv")
                                     print("Row(s) Deleted!!")
                                 except:
                                     print("ERROR!! Invalid Parameters!")
@@ -220,9 +223,8 @@ def main(cnt):
                                 new1 = l1[1].strip()
                                 c.execute("ALTER TABLE "+old1 +" RENAME TO "+new1)
                                 db.commit()
-                                os.system("IF EXIST C:\AmbSQL\\"+old1 +".csv "+"DEL /F C:\AmbSQL\\"+old1+".csv")
-                                print("Table name Updated from " +
-                                      old1+" to "+new1)
+                                #os.system("IF EXIST C:\AmbSQL\\"+old1 +".csv "+"DEL /F C:\AmbSQL\\"+old1+".csv")
+                                print("Table name Updated from " +old1+" to "+new1)
                                 del old1, new1
                             else:
                                 print("ERROR!! There should be two Parameters!")
@@ -240,7 +242,7 @@ def main(cnt):
                         try:
                             c.execute("DROP TABLE "+abc)
                             db.commit()
-                            os.system("IF EXIST C:\AmbSQL\\" + abc +".csv " + "DEL /F C:\AmbSQL\\" + abc + ".csv")
+                            #os.system("IF EXIST C:\AmbSQL\\" + abc +".csv " + "DEL /F C:\AmbSQL\\" + abc + ".csv")
                             print("Table Dropped!!")
                         except:
                             print("ERROR!! Invalid Table Name!")
