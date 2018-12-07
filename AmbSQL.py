@@ -25,7 +25,7 @@ def main(cnt):
     print("")
     while(True):
         try:
-            command = input("> ").lower()
+            command = input("> ").lower().strip()
             if(command == "connect"):
                 usern = str(input("Enter user-name: ")).lower()
                 passw = str(getpass.getpass('Enter password: '))
@@ -99,6 +99,22 @@ def main(cnt):
                     try:
                         abc = command[10:-1].upper().strip()
                         if(len(abc) != 0):
+                            '''
+                            c.execute("pragma table_info('"+abc+"')")
+                            abv = c.fetchall()
+                            for p,q,r,s,t,u in abv:
+                                print(q, end="\t  ")
+                            print("")
+                            for p,q,r,s,t,u in abv:
+                                print("-"*len(q), end="\t  ")
+                            print("")
+                            c.execute("SELECT * FROM "+abc)
+                            tables = c.fetchall()
+                            for i in tables:
+                                for j in i:
+                                    print(str(j), end="\t  ")
+                                print("")
+                            '''
                             c.execute("SELECT name FROM sqlite_master WHERE type='table';")
                             tables = c.fetchall()
                             for table_name in tables:
