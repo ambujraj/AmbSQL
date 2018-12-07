@@ -6,7 +6,7 @@
 
 # Documentation
 > connect                                                            - To login to Database<br>
-> createTable(<table-name>, <column1-name> , <column2-name>, ....)   - To create new Table<br>
+> createTable(<table_name>, <column1-name> , <column2-name>, ....)   - To create new Table<br>
 > insertValues(<table_name>, <column1-value> , <column2-value>, ...) - To enter the values in Table<br>
 > showTable(<table_name>)                                            - To show the Table with values<br>
 > deleteTable(<table_name>)                                          - To truncate the Table<br>
