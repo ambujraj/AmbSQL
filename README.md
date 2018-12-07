@@ -2,7 +2,7 @@
 <br>
 # AmbSQL
 * AmbSQL is a Relational Database Management System which created with keeping in focus the speed and the ease to operate on.
-* Made With Python3
+* Made With &#x2764; with Python3
 
 # Documentation
 > connect                                                            - To login to Database<br>
