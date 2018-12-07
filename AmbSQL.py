@@ -15,12 +15,6 @@ db = sqlite3.connect(path+"dtables.db")
 c = db.cursor()
 dbu = sqlite3.connect(path+"duser.db")
 cu = dbu.cursor()
-cu.execute("CREATE TABLE IF NOT EXISTS users(idu INTEGER PRIMARY KEY, uname TEXT, pass TEXT)")
-try:    
-    cu.execute("INSERT INTO users VALUES(3, 'amb', 'a123')")
-except:
-    pass
-dbu.commit()
 def main(cnt):
     os.system("cls")
     print("AmbSQL shell version: 1.0.2.0")
@@ -36,14 +30,12 @@ def main(cnt):
                 if(usern == "system" and passw == "123"):
                     cnt = 1
                     print("Connected.")
+                elif(usern == "sys" and passw == "123"):
+                    print("connection as SYS is not Authorised for Users!!")
+                    print("")
                 else:
-                    try:
-                        c.execute("SELECT * FROM users WHERE uname="+usern+" AND pass="+passw)
-                        cnt = 1
-                        print("Connected.")
-                    except:
-                        print("Username or Password entered wrong!!")
-
+                    print("Username or Password entered wrong!!")
+                del usern
 
             elif(command.startswith("createtable(") and command.endswith(")")):
                 if (cnt != 1):
