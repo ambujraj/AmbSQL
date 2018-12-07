@@ -1,7 +1,7 @@
 ![cagygpture](https://user-images.githubusercontent.com/29935993/49330883-01a3c680-f5bb-11e8-9a62-6f37ffad9a72.PNG)
 <br>
 # AmbSQL
-* AmbSQL is a Database Management System which created with keeping in focus the speed and the ease to operate on.
+* AmbSQL is a Relational Database Management System which created with keeping in focus the speed and the ease to operate on.
 * Made With Python3
 
 # Documentation
