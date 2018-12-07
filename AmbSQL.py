@@ -15,7 +15,12 @@ db = sqlite3.connect(path+"dtables.db")
 c = db.cursor()
 dbu = sqlite3.connect(path+"duser.db")
 cu = dbu.cursor()
-
+cu.execute("CREATE TABLE IF NOT EXISTS users(idu INTEGER PRIMARY KEY, uname TEXT, pass TEXT)")
+try:    
+    cu.execute("INSERT INTO users VALUES(3, 'amb', 'a123')")
+except:
+    pass
+dbu.commit()
 def main(cnt):
     os.system("cls")
     print("AmbSQL shell version: 1.0.2.0")
@@ -23,41 +28,43 @@ def main(cnt):
     print("Type 'docs()' for documentation")
     print("")
     while(True):
-        #Use Switch
         try:
             command = input("> ").lower()
             if(command == "connect"):
-                usern = input("Enter user-name: ").lower()
-                passw = getpass.getpass('Enter password: ')
+                usern = str(input("Enter user-name: ")).lower()
+                passw = str(getpass.getpass('Enter password: '))
                 if(usern == "system" and passw == "123"):
                     cnt = 1
                     print("Connected.")
-                elif(usern == "sys" and passw == "123"):
-                    print("connection as SYS is not Authorised for Users!!")
-                    print("")
                 else:
-                    print("Username or Password entered wrong!!")
-                del usern
+                    try:
+                        c.execute("SELECT * FROM users WHERE uname="+usern+" AND pass="+passw)
+                        cnt = 1
+                        print("Connected.")
+                    except:
+                        print("Username or Password entered wrong!!")
+
+
             elif(command.startswith("createtable(") and command.endswith(")")):
-                if(cnt != 1):
+                if (cnt != 1):
                     print("ERROR: Not Connected !!")
                 else:
                     abc = command[12:-1].upper()
-                    if(len(abc) != 0):
+                    if (len(abc) != 0):
                         l1 = abc.split(",")
-                        if(len(l1) >= 2):
+                        if (len(l1) >= 2):
                             tname = l1[0]
                             a = []
                             for i in range(1, len(l1)):
-                                a.insert(i-1, l1[i].lower().strip())
+                                a.insert(i - 1, l1[i].lower().strip())
                             try:
-                                c.execute("CREATE TABLE "+tname +" (id INTEGER PRIMARY KEY)")
+                                c.execute("CREATE TABLE " + tname + " (id INTEGER PRIMARY KEY)")
                                 for j in range(1, len(l1)):
-                                    c.execute("ALTER TABLE "+tname +" ADD "+a[j-1]+" TEXT")
+                                    c.execute("ALTER TABLE " + tname + " ADD " + a[j - 1] + " TEXT")
                                 db.commit()
                                 print("TABLE CREATED!!")
                             except:
-                                print("ERROR!! Table Name already exists!")
+                                print("ERROR!! Table Name and Attribute name should be unique!")
                             del tname, a
                         else:
                             print("ERROR!! There should be atleast two Parameters!")
@@ -73,15 +80,15 @@ def main(cnt):
                     if(len(abc) != 0):
                         l1 = abc.split(",")
                         if(len(l1) >= 2):
-                            tname = l1[0]
+                            tname = str(l1[0])
                             a = []
                             for i in range(1, len(l1)):
-                                a.insert(i-1, l1[i].lower().strip())
+                                a.insert(i-1, str(l1[i]).lower().strip())
                             at = tuple(a)
                             try:
                                 c.execute("INSERT INTO "+tname+" VALUES(NULL"+",?"*(len(l1)-1)+")", at)
                                 db.commit()
-                                print("SUCCESSFULL!!")
+                                print("One row inserted!!")
                             except:
                                 print("ERROR!! Invalid Entry!")
                             del at, a, tname
@@ -112,6 +119,45 @@ def main(cnt):
                         del abc
                     except:
                         print("ERROR!! Table Not Found!")
+            elif(command.startswith("deletetable(") and command.endswith(")")):
+                if (cnt != 1):
+                    print("ERROR: Not Connected !!")
+                else:
+                    abc = command[12:-1]
+                    if (len(abc) != 0):
+                        l1 = abc.split(",")
+                        if(len(l1)==1):
+                            tname = l1[0].strip().upper()
+                            try:
+                                c.execute("DELETE FROM "+tname)
+                                db.commit()
+                                os.system("IF EXIST C:\AmbSQL\\" + tname + ".csv " + "DEL /F C:\AmbSQL\\" + tname + ".csv")
+                                print("All Rows Deleted!!")
+                            except:
+                                print("ERROR!! Invalid Table name!")
+                            del tname
+                        elif(len(l1) == 2):
+                            tname = l1[0].strip().upper()
+                            drow = l1[1].lower()
+                            dd = drow.split("=")
+                            if(len(dd)==2):
+                                col = dd[0].strip()
+                                valued = dd[1].strip()
+                                try:
+                                    c.execute("DELETE FROM "+tname+" WHERE "+col+"="+valued+";")
+                                    db.commit()
+                                    os.system("IF EXIST C:\AmbSQL\\" + tname + ".csv " + "DEL /F C:\AmbSQL\\" + tname + ".csv")
+                                    print("Row(s) Deleted!!")
+                                except:
+                                    print("ERROR!! Invalid Parameters!")
+                                del col, valued
+                            else:
+                                print("ERROR!! Invalid Equivalence of Row and Value!")
+                            del dd, drow, tname
+                        else:
+                            print("ERROR!! Entry should contain one or two parameters!")
+                    else:
+                        print("ERROR!! Entry should have atleast one parameter!")
             elif(command == "clear()"):
                 if(cnt != 1):
                     print("ERROR: Not Connected !!")
@@ -121,10 +167,12 @@ def main(cnt):
                 print("")
                 print("Copyright (c) 2018, Ambuj. All rights reserved.")
                 print("")
-                print("\tconnect                                                            - To login to database")
-                print("\tcreateTable(<table-name>, <column1-name> , <column2-name>, ....)   - To create new table")
+                print("\tconnect                                                            - To login to Database")
+                print("\tcreateTable(<table-name>, <column1-name> , <column2-name>, ....)   - To create new Table")
                 print("\tinsertValues(<table_name>, <column1-value> , <column2-value>, ...) - To enter the values in Table")
                 print("\tshowTable(<table_name>)                                            - To show the Table with values")
+                print("\tdeleteTable(<table_name>)                                          - To truncate the Table")
+                print("\tdeleteTable(<table_name> , <condition>)                            - To delete row(s) from Table")
                 print("\talterTable(<old-table_name> , <new-table_name>)                    - To rename Table Name")
                 print("\tclear()                                                            - To clear the Screen")
                 print("")
@@ -148,9 +196,25 @@ def main(cnt):
                             else:
                                 print("ERROR!! There should be two Parameters!")
                         else:
-                            print("ERROR!! Please Enter the Table name!")
+                            print("ERROR!! Please Enter the Table names!")
                     except:
                         print("ERROR!! Invalid Table Name!")
+                    del abc
+            elif(command.startswith("droptable(") and command.endswith(")")):
+                if (cnt != 1):
+                    print("ERROR: Not Connected !!")
+                else:
+                    abc = command[10:-1].upper().strip()
+                    if(len(abc)!=0):
+                        try:
+                            c.execute("DROP TABLE "+abc)
+                            db.commit()
+                            os.system("IF EXIST C:\AmbSQL\\" + abc + ".csv " + "DEL /F C:\AmbSQL\\" + abc + ".csv")
+                            print("Table Dropped!!")
+                        except:
+                            print("ERROR!! Invalid Table Name!")
+                    else:
+                        print("ERROR!! Please Enter the Table name!")
                     del abc
             elif(command == "logout()"):
                 cnt = 0
