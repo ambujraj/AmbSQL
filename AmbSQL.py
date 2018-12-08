@@ -17,7 +17,7 @@ dbu = sqlite3.connect(path+"duser.db")
 cu = dbu.cursor()
 cu.execute("CREATE TABLE IF NOT EXISTS USERS(id INTEGER PRIMARY KEY,user TEXT,pass TEXT)")
 dbu.commit()
-
+usern=""
 def main(cnt):
     os.system("cls")
     print("AmbSQL shell version: 1.0.2.0")
@@ -28,7 +28,8 @@ def main(cnt):
         try:
             command = input("> ").lower().strip()
             if(command == "connect"):
-                usern = str(input("Enter user-name: ")).lower()
+                cnt=0
+                usern = str(input("Enter user-name: ")).lower().strip()
                 passw = str(getpass.getpass('Enter password: '))
                 if(usern == "system" and passw == "123"):
                     cnt = 1
@@ -42,8 +43,8 @@ def main(cnt):
                             break
                     if(cnt==0):
                         print("Username or Password entered wrong!!")
-                    del temp 
-                del usern
+                        del usern
+                    del temp
 
             elif(command.startswith("createtable(") and command.endswith(")")):
                 if (cnt != 1):
@@ -98,6 +99,32 @@ def main(cnt):
                     else:
                         print("ERROR!! Please Enter the Table name!")
                     del abc
+            elif(command.startswith("createuser(") and command.endswith(")")):
+                if(cnt!=1):
+                    print("ERROR: Not Authorized !!")
+                elif(usern=="system"):
+                    abc = command[11:-1].lower().strip()
+                    if(len(abc)!=0):
+                        l1 = abc.split(",")
+                        if(len(l1)==2):
+                            l1[0] = l1[0].strip()
+                            l1[1] = l1[1].strip()
+                            at = tuple(l1)
+                            try:
+                                cu.execute("INSERT INTO USERS VALUES(NULL,?,?)",at)
+                                dbu.commit()
+                                print("User Created.")
+                            except:
+                                print("ERROR!! Invalid Entry!")
+                            del at
+                        else:
+                            print("ERROR!! There should be two Parameters!")
+                        del l1
+                    else:
+                        print("ERROR!! Please Enter the Table name!")
+                    del abc
+                else:
+                    print("ERROR: Not Authorized !!")
             elif(command.startswith("showschema(") and command.endswith(")")):
                 if(cnt != 1):
                     print("ERROR: Not Connected !!")
@@ -213,6 +240,7 @@ def main(cnt):
                 print("\tdeleteTable(<table_name> , <condition>)                            - To delete row(s) from Table")
                 print("\tdropTable(<table_name>)                                            - To drop the Table")
                 print("\talterTable(<old-table_name> , <new-table_name>)                    - To rename Table Name")
+                print("\tcreateUser(<user_name> , <password>)                               - To create new User")
                 print("\tclear()                                                            - To clear the Screen")
                 print("")
                 print("\tnote=> Username: 'system', password: '123'")
