@@ -15,7 +15,8 @@ db = sqlite3.connect(path+"dtables.db")
 c = db.cursor()
 dbu = sqlite3.connect(path+"duser.db")
 cu = dbu.cursor()
-
+cu.execute("CREATE TABLE IF NOT EXISTS USERS(id INTEGER PRIMARY KEY,user TEXT,pass TEXT)")
+dbu.commit()
 
 def main(cnt):
     os.system("cls")
@@ -32,11 +33,16 @@ def main(cnt):
                 if(usern == "system" and passw == "123"):
                     cnt = 1
                     print("Connected.")
-                elif(usern == "sys" and passw == "123"):
-                    print("connection as SYS is not Authorised for Users!!")
-                    print("")
                 else:
-                    print("Username or Password entered wrong!!")
+                    temp = cu.execute("SELECT USER,PASS FROM USERS WHERE USER= ? AND PASS= ?", (usern, passw))
+                    for i in temp:
+                        if(str(i[0])==str(usern) and str(i[1])==str(passw)):
+                            cnt=1
+                            print("Connected.")
+                            break
+                    if(cnt==0):
+                        print("Username or Password entered wrong!!")
+                    del temp 
                 del usern
 
             elif(command.startswith("createtable(") and command.endswith(")")):
@@ -256,6 +262,7 @@ def main(cnt):
                 print("Command not found!!(please ensure you include '()' at the end)")
         except KeyboardInterrupt:
             print("KEYBOARD INTERRUPT")
+            dbu.close()
             db.close()
             os.system("cls")
             sys.exit(0)
