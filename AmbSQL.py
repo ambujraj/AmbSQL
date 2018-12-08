@@ -17,7 +17,9 @@ dbu = sqlite3.connect(path+"duser.db")
 cu = dbu.cursor()
 cu.execute("CREATE TABLE IF NOT EXISTS USERS(id INTEGER PRIMARY KEY,user TEXT,pass TEXT)")
 dbu.commit()
-usern=""
+usern = ""
+
+
 def main(cnt):
     os.system("cls")
     print("AmbSQL shell version: 1.0.2.0")
@@ -28,20 +30,21 @@ def main(cnt):
         try:
             command = input("> ").lower().strip()
             if(command == "connect"):
-                cnt=0
+                cnt = 0
                 usern = str(input("Enter user-name: ")).lower().strip()
                 passw = str(getpass.getpass('Enter password: '))
                 if(usern == "system" and passw == "123"):
                     cnt = 1
                     print("Connected.")
                 else:
-                    temp = cu.execute("SELECT USER,PASS FROM USERS WHERE USER= ? AND PASS= ?", (usern, passw))
+                    temp = cu.execute(
+                        "SELECT USER,PASS FROM USERS WHERE USER= ? AND PASS= ?", (usern, passw))
                     for i in temp:
-                        if(str(i[0])==str(usern) and str(i[1])==str(passw)):
-                            cnt=1
+                        if(str(i[0]) == str(usern) and str(i[1]) == str(passw)):
+                            cnt = 1
                             print("Connected.")
                             break
-                    if(cnt==0):
+                    if(cnt == 0):
                         print("Username or Password entered wrong!!")
                         del usern
                     del temp
@@ -59,7 +62,7 @@ def main(cnt):
                             for i in range(1, len(l1)):
                                 a.insert(i - 1, l1[i].lower().strip())
                             try:
-                                c.execute("CREATE TABLE " + tname +" (id INTEGER PRIMARY KEY)")
+                                c.execute("CREATE TABLE " + tname +" (id INTEGER PRIMARY KEY,last_mod TEXT)")
                                 for j in range(1, len(l1)):
                                     c.execute("ALTER TABLE " + tname +" ADD " + a[j - 1] + " TEXT")
                                 db.commit()
@@ -87,7 +90,7 @@ def main(cnt):
                                 a.insert(i-1, str(l1[i]).lower().strip())
                             at = tuple(a)
                             try:
-                                c.execute("INSERT INTO "+tname +" VALUES(NULL"+",?"*(len(l1)-1)+")", at)
+                                c.execute("INSERT INTO "+tname +" VALUES(NULL,?"+",?"*(len(l1)-1)+")", (usern,)+at)
                                 db.commit()
                                 print("One row inserted!!")
                             except:
@@ -100,18 +103,18 @@ def main(cnt):
                         print("ERROR!! Please Enter the Table name!")
                     del abc
             elif(command.startswith("createuser(") and command.endswith(")")):
-                if(cnt!=1):
+                if(cnt != 1):
                     print("ERROR: Not Authorized !!")
-                elif(usern=="system"):
+                elif(usern == "system"):
                     abc = command[11:-1].lower().strip()
-                    if(len(abc)!=0):
+                    if(len(abc) != 0):
                         l1 = abc.split(",")
-                        if(len(l1)==2):
+                        if(len(l1) == 2):
                             l1[0] = l1[0].strip()
                             l1[1] = l1[1].strip()
                             at = tuple(l1)
                             try:
-                                cu.execute("INSERT INTO USERS VALUES(NULL,?,?)",at)
+                                cu.execute("INSERT INTO USERS VALUES(NULL,?,?)", at)
                                 dbu.commit()
                                 print("User Created.")
                             except:
@@ -130,14 +133,14 @@ def main(cnt):
                     print("ERROR: Not Connected !!")
                 else:
                     abc = command[11:-1].upper().strip()
-                    if(len(abc)!=0):
+                    if(len(abc) != 0):
                         try:
                             c.execute("pragma table_info('"+abc+"')")
                             abv = c.fetchall()
                             print("       cid\t    name\t       pk")
                             print("----------\t--------\t---------")
-                            for p,q,r,s,t,u in abv:
-                                print(" "*(10-len(str(p)))+str(p)+"\t"+" "*(8-len(str(q)))+str(q)+"\t"+" "*(9-len(str(u)))+str(u))
+                            for p, q, r, s, t, u in abv:
+                                print(" "*(10-len(str(p)))+str(p)+"\t"+" " *(8-len(str(q)))+str(q)+"\t"+" "*(9-len(str(u)))+str(u))
                             print("")
                         except:
                             print("ERROR!! Table Not Found!")
@@ -146,21 +149,21 @@ def main(cnt):
             elif(command.startswith("showtable(") and command.endswith(")")):
                 if(cnt != 1):
                     print("ERROR: Not Connected !!")
-                
+
                 else:
                     try:
                         abc = command[10:-1].upper().strip()
                         if(len(abc) != 0):
                             c.execute("pragma table_info('"+abc+"')")
                             abv = c.fetchall()
-                            for p,q,r,s,t,u in abv:
+                            for p, q, r, s, t, u in abv:
                                 print(" "*(9-len(str(q)))+str(q), end="\t")
                             print("")
-                            
+
                             for p, q, r, s, t, u in abv:
                                 print("---------", end="\t")
                             print("")
-                            
+
                             c.execute("SELECT * FROM "+abc)
                             tables = c.fetchall()
                             for i in tables:
@@ -255,10 +258,12 @@ def main(cnt):
                             if(len(l1) == 2):
                                 old1 = l1[0].strip()
                                 new1 = l1[1].strip()
-                                c.execute("ALTER TABLE "+old1 +" RENAME TO "+new1)
+                                c.execute("ALTER TABLE "+old1 +
+                                          " RENAME TO "+new1)
                                 db.commit()
                                 #os.system("IF EXIST C:\AmbSQL\\"+old1 +".csv "+"DEL /F C:\AmbSQL\\"+old1+".csv")
-                                print("Table name Updated from " +old1+" to "+new1)
+                                print("Table name Updated from " +
+                                      old1+" to "+new1)
                                 del old1, new1
                             else:
                                 print("ERROR!! There should be two Parameters!")
@@ -294,4 +299,6 @@ def main(cnt):
             db.close()
             os.system("cls")
             sys.exit(0)
+
+
 main(0)
