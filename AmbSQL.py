@@ -269,6 +269,7 @@ def main(cnt):
                 print("\talterTable(<old-table_name> , <new-table_name>)                    - To rename Table Name")
                 print("\tcreateUser(<user_name> , <password>)                               - To create new User")
                 print("\tdeleteUser(<user_name>)                                            - To delete a User")
+                print("\tlogout()                                                           - To Logout")
                 print("\tclear()                                                            - To clear the Screen")
                 print("")
                 print("\tnote=> Username: 'system', password: '123'")
