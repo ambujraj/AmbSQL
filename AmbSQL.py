@@ -37,8 +37,7 @@ def main(cnt):
                     cnt = 1
                     print("Connected.")
                 else:
-                    temp = cu.execute(
-                        "SELECT USER,PASS FROM USERS WHERE USER= ? AND PASS= ?", (usern, passw))
+                    temp = cu.execute("SELECT USER,PASS FROM USERS WHERE USER= ? AND PASS= ?", (usern, passw))
                     for i in temp:
                         if(str(i[0]) == str(usern) and str(i[1]) == str(passw)):
                             cnt = 1
@@ -122,6 +121,31 @@ def main(cnt):
                             del at
                         else:
                             print("ERROR!! There should be two Parameters!")
+                        del l1
+                    else:
+                        print("ERROR!! Please Enter the Table name!")
+                    del abc
+                else:
+                    print("ERROR: Not Authorized !!")
+            elif(command.startswith("deleteuser(") and command.endswith(")")):
+                if(cnt != 1):
+                    print("ERROR: Not Authorized !!")
+                elif(usern == "system"):
+                    abc = command[11:-1].lower().strip()
+                    if(len(abc) != 0):
+                        l1 = abc.split(",")
+                        if(len(l1) == 1):
+                            l1[0] = l1[0].strip()
+                            at = tuple(l1)
+                            try:
+                                cu.execute("DELETE FROM USERS WHERE user= ?", at)
+                                dbu.commit()
+                                print("User Deleted.")
+                            except:
+                                print("ERROR!! Invalid Entry!")
+                            del at
+                        else:
+                            print("ERROR!! There should be one Parameters!")
                         del l1
                     else:
                         print("ERROR!! Please Enter the Table name!")
@@ -244,6 +268,7 @@ def main(cnt):
                 print("\tdropTable(<table_name>)                                            - To drop the Table")
                 print("\talterTable(<old-table_name> , <new-table_name>)                    - To rename Table Name")
                 print("\tcreateUser(<user_name> , <password>)                               - To create new User")
+                print("\tdeleteUser(<user_name>)                                            - To delete a User")
                 print("\tclear()                                                            - To clear the Screen")
                 print("")
                 print("\tnote=> Username: 'system', password: '123'")
