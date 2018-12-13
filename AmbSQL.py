@@ -230,7 +230,7 @@ def main(cnt):
                         elif(len(l1) == 2):
                             tname = l1[0].strip().upper()
                             drow = l1[1].lower()
-                            dd = drow.split("=")
+                            dd = drow.split("==")
                             if(len(dd) == 2):
                                 col = dd[0].strip()
                                 if(col=='id'):
@@ -270,7 +270,7 @@ def main(cnt):
                 print("\tshowSchema(<table_name>)                                                - To show the Table schema")
                 print("\tshowTable(<table_name>)                                                 - To show the Table with values")
                 print("\tdeleteTable(<table_name>)                                               - To truncate the Table")
-                print("\tdeleteTable(<table_name> , <condition>)(e.g- deletetable(ab,name=jack)) - To delete row(s) from Table")
+                print("\tdeleteTable(<table_name> , <condition>)(e.g- deletetable(ab,name==jack))- To delete row(s) from Table")
                 print("\tdropTable(<table_name>)                                                 - To drop the Table")
                 print("\talterTable(<old-table_name> , <new-table_name>)                         - To rename Table Name")
                 print("\tcreateUser(<user_name> , <password>)                                    - To create new User")
