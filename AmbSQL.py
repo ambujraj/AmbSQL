@@ -155,7 +155,7 @@ def main(cnt):
                 if(cnt != 1):
                     print("ERROR: Not Connected !!")
                 else:
-                    abc = command[11:-1].upper().strip()
+                    abc = command[10:-1].upper().strip()
                     if(len(abc) != 0):
                         try:
                             c.execute("pragma table_info('"+abc+"')")
@@ -175,7 +175,7 @@ def main(cnt):
 
                 else:
                     try:
-                        abc = command[10:-1].upper().strip()
+                        abc = command[11:-1].upper().strip()
                         if(len(abc) != 0):
                             c.execute("pragma table_info('"+abc+"')")
                             abv = c.fetchall()
