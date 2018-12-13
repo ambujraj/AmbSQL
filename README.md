@@ -5,15 +5,21 @@
 * Made With &#x2764; with Python3
 
 # Documentation
-> connect                                                            - To login to Database<br>
-> createTable(<table_name>, <column1_name> , <column2_name>, ....)   - To create new Table<br>
-> insertValues(<table_name>, <column1_value> , <column2_value>, ...) - To enter the values in Table<br>
-> showTable(<table_name>)                                            - To show the Table with values<br>
-> deleteTable(<table_name>)                                          - To truncate the Table<br>
-> deleteTable(<table_name> , <condition>)                            - To delete row(s) from Table<br>
-> droptable(<table_name>)                                            - To drop the Table<br>
-> alterTable(<old_table_name> , <new_table_name>)                    - To rename Table Name<br>
-> clear()                                                            - To clear the Screen<br>
+>connect                                                                 - To login to Database<br>
+>createTable(<table-name>, <column1-name> , <column2-name>, ....)        - To create new Table<br>
+>insertValues(<table_name>, <column1-value> , <column2-value>, ...)      - To enter the values in Table<br>
+>showTable(<table_name>)                                                 - To show the Table schema<br>
+>showValues(<table_name>)                                                - To show the Table values<br>
+>updatevalue(<table_name> , <assignment>)                                - To Update all values of column<br>
+>updatevalue(<table_name> , <assignment> , <condition>)                  - To Update the values of column<br>
+>deleteTable(<table_name>)                                               - To truncate the Table<br>
+>deleteTable(<table_name> , <condition>)(e.g- deletetable(ab,name==jack))- To delete row(s) from Table<br>
+>dropTable(<table_name>)                                                 - To drop the Table<br>
+>alterTable(<old-table_name> , <new-table_name>)                         - To rename Table Name<br>
+>createUser(<user_name> , <password>)                                    - To create new User<br>
+>deleteUser(<user_name>)                                                 - To delete a User<br>
+>logout()                                                                - To Logout<br>
+>clear()                                                                 - To clear the Screen<br>
 
 # Installation
 > Download the AmbSQL.exe file from https://github.com/ambujraj/AmbSQL/releases and run it on Your PC.
