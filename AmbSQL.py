@@ -1,5 +1,5 @@
 import sys
-import pandas as pd
+#import pandas as pd
 import getpass
 import string
 import sqlite3
@@ -233,9 +233,15 @@ def main(cnt):
                             dd = drow.split("=")
                             if(len(dd) == 2):
                                 col = dd[0].strip()
-                                valued = dd[1].strip()
+                                if(col=='id'):
+                                    valued = dd[1].strip()
+                                else:
+                                    valued = str(dd[1]).strip()
                                 try:
-                                    c.execute("DELETE FROM "+tname +" WHERE "+col+"="+valued+";")
+                                    if(col=='id'):
+                                        c.execute("DELETE FROM "+tname +" WHERE "+col+"="+valued+";")
+                                    else:
+                                        c.execute("DELETE FROM "+tname + " WHERE "+col+" = '"+valued+"';")
                                     db.commit()
                                     #os.system("IF EXIST C:\AmbSQL\\" + tname + ".csv " + "DEL /F C:\AmbSQL\\" + tname + ".csv")
                                     print("Row(s) Deleted!!")
@@ -258,19 +264,19 @@ def main(cnt):
                 print("")
                 print("Copyright (c) 2018, Ambuj. All rights reserved.")
                 print("")
-                print("\tconnect                                                            - To login to Database")
-                print("\tcreateTable(<table-name>, <column1-name> , <column2-name>, ....)   - To create new Table")
-                print("\tinsertValues(<table_name>, <column1-value> , <column2-value>, ...) - To enter the values in Table")
-                print("\tshowSchema(<table_name>)                                           - To show the Table schema")
-                print("\tshowTable(<table_name>)                                            - To show the Table with values")
-                print("\tdeleteTable(<table_name>)                                          - To truncate the Table")
-                print("\tdeleteTable(<table_name> , <condition>)                            - To delete row(s) from Table")
-                print("\tdropTable(<table_name>)                                            - To drop the Table")
-                print("\talterTable(<old-table_name> , <new-table_name>)                    - To rename Table Name")
-                print("\tcreateUser(<user_name> , <password>)                               - To create new User")
-                print("\tdeleteUser(<user_name>)                                            - To delete a User")
-                print("\tlogout()                                                           - To Logout")
-                print("\tclear()                                                            - To clear the Screen")
+                print("\tconnect                                                                 - To login to Database")
+                print("\tcreateTable(<table-name>, <column1-name> , <column2-name>, ....)        - To create new Table")
+                print("\tinsertValues(<table_name>, <column1-value> , <column2-value>, ...)      - To enter the values in Table")
+                print("\tshowSchema(<table_name>)                                                - To show the Table schema")
+                print("\tshowTable(<table_name>)                                                 - To show the Table with values")
+                print("\tdeleteTable(<table_name>)                                               - To truncate the Table")
+                print("\tdeleteTable(<table_name> , <condition>)(e.g- deletetable(ab,name=jack)) - To delete row(s) from Table")
+                print("\tdropTable(<table_name>)                                                 - To drop the Table")
+                print("\talterTable(<old-table_name> , <new-table_name>)                         - To rename Table Name")
+                print("\tcreateUser(<user_name> , <password>)                                    - To create new User")
+                print("\tdeleteUser(<user_name>)                                                 - To delete a User")
+                print("\tlogout()                                                                - To Logout")
+                print("\tclear()                                                                 - To clear the Screen")
                 print("")
                 print("\tnote=> Username: 'system', password: '123'")
             elif(command.startswith("altertable(") and command.endswith(")")):
@@ -284,8 +290,7 @@ def main(cnt):
                             if(len(l1) == 2):
                                 old1 = l1[0].strip()
                                 new1 = l1[1].strip()
-                                c.execute("ALTER TABLE "+old1 +
-                                          " RENAME TO "+new1)
+                                c.execute("ALTER TABLE "+old1 +" RENAME TO "+new1)
                                 db.commit()
                                 #os.system("IF EXIST C:\AmbSQL\\"+old1 +".csv "+"DEL /F C:\AmbSQL\\"+old1+".csv")
                                 print("Table name Updated from " +
