@@ -15,6 +15,13 @@ h2 {
   text-transform: uppercase;
   letter-spacing: 1px;
 }
+.wrapper{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 a.animated-button:link, a.animated-button:visited {
 	position: relative;
 	display: block;
@@ -84,4 +91,12 @@ a.animated-button.abc:after {
 	-ms-transform: translateX(-50%) translateY(-50%) rotate(25deg);
 	-webkit-transform: translateX(-50%) translateY(-50%) rotate(25deg);
 	transform: translateX(-50%) translateY(-50%) rotate(25deg);
+}
+.non-select{
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
 }
