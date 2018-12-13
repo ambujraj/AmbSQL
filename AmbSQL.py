@@ -326,7 +326,7 @@ def main(cnt):
                 print("\tcreateTable(<table-name>, <column1-name> , <column2-name>, ....)        - To create new Table")
                 print("\tinsertValues(<table_name>, <column1-value> , <column2-value>, ...)      - To enter the values in Table")
                 print("\tshowTable(<table_name>)                                                 - To show the Table schema")
-                print("\tshowValues(<table_name>)                                                - To show the Table with values")
+                print("\tshowValues(<table_name>)                                                - To show the Table values")
                 print("\tupdatevalue(<table_name> , <assignment>)                                - To Update all values of column")
                 print("\tupdatevalue(<table_name> , <assignment> , <condition>)                  - To Update the values of column")
                 print("\tdeleteTable(<table_name>)                                               - To truncate the Table")
