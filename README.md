@@ -10,6 +10,9 @@
 # Installation
 > Download the AmbSQL.exe file from https://github.com/ambujraj/AmbSQL/releases and run it on Your PC.
 
+# Contributors
+> Check the list of contributors [here](https://github.com/ambujraj/AmbSQL/blob/master/CREDITS)
+
 # Help Us Improve
 > You can suggest us of new improvements you want by creating new Issue [here](https://github.com/ambujraj/AmbSQL/issues)
 
