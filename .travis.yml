@@ -3,4 +3,3 @@ python:
   - "3.6"
 script:
   - pytest
-os: windows
