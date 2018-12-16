@@ -1,19 +1,17 @@
 import sys
-#import pandas as pd
 import getpass
 import string
 import sqlite3
 import os
 os.system("title "+"AmbSQL")
-#USE PANDAS DB
 try:
-    os.system("IF NOT EXIST C:\AmbSQL MKDIR C:\AmbSQL")
+    os.system("IF NOT EXIST C:\AmbSQL MKDIR C:\AmbSQL") # Create Folder AmbSQL for storage of Database file
 except:
     pass
 path = 'C:\\AmbSQL\\'
-db = sqlite3.connect(path+"dtables.db")
+db = sqlite3.connect(path+"dtables.db") # Connect to Tables Database
 c = db.cursor()
-dbu = sqlite3.connect(path+"duser.db")
+dbu = sqlite3.connect(path+"duser.db") # Connect to Users Database
 cu = dbu.cursor()
 cu.execute("CREATE TABLE IF NOT EXISTS USERS(id INTEGER PRIMARY KEY,user TEXT,pass TEXT)")
 dbu.commit()
@@ -27,11 +25,12 @@ def main(cnt):
     print("")
     while(True):
         try:
-            command = input("> ").lower().strip()
+            command = input("> ").lower().strip() # Input Command
             if(command == "connect"):
                 cnt = 0
-                usern = str(input("Enter user-name: ")).lower().strip()
-                passw = str(getpass.getpass('Enter password: '))
+                usern = str(input("Enter user-name: ")).lower().strip() # Input Username
+                passw = str(getpass.getpass('Enter password: ')) # Input Password
+                # Username, Password Auth
                 if(usern == "system" and passw == "123"):
                     cnt = 1
                     print("Connected.")
@@ -46,7 +45,7 @@ def main(cnt):
                         print("Username or Password entered wrong!!")
                         del usern
                     del temp
-
+            # Create Table
             elif(command.startswith("createtable(") and command.endswith(")")):
                 if (cnt != 1):
                     print("ERROR: Not Connected !!")
@@ -74,6 +73,7 @@ def main(cnt):
                     else:
                         print("ERROR!! Please Enter the Table name!")
                     del abc
+            # Insert Values into Table
             elif(command.startswith("insertvalues(") and command.endswith(")")):
                 if(cnt != 1):
                     print("ERROR: Not Connected !!")
@@ -100,6 +100,7 @@ def main(cnt):
                     else:
                         print("ERROR!! Please Enter the Table name!")
                     del abc
+            # Create New User
             elif(command.startswith("createuser(") and command.endswith(")")):
                 if(cnt != 1):
                     print("ERROR: Not Authorized !!")
@@ -126,6 +127,7 @@ def main(cnt):
                     del abc
                 else:
                     print("ERROR: Not Authorized !!")
+            # Delete Existing User
             elif(command.startswith("deleteuser(") and command.endswith(")")):
                 if(cnt != 1):
                     print("ERROR: Not Authorized !!")
@@ -151,6 +153,7 @@ def main(cnt):
                     del abc
                 else:
                     print("ERROR: Not Authorized !!")
+            # Show Schema
             elif(command.startswith("showtable(") and command.endswith(")")):
                 if(cnt != 1):
                     print("ERROR: Not Connected !!")
@@ -169,6 +172,7 @@ def main(cnt):
                             print("ERROR!! Table Not Found!")
                     else:
                         print("ERROR!! Please Enter the Table name!")
+            # Show Values In Table
             elif(command.startswith("showvalues(") and command.endswith(")")):
                 if(cnt != 1):
                     print("ERROR: Not Connected !!")
@@ -209,6 +213,7 @@ def main(cnt):
                         del abc
                     except:
                         print("ERROR!! Table Not Found!")
+            # Delete Rows Either with Condition or Truncate Table
             elif(command.startswith("deletetable(") and command.endswith(")")):
                 if (cnt != 1):
                     print("ERROR: Not Connected !!")
@@ -256,6 +261,7 @@ def main(cnt):
                     else:
                         print("ERROR!! Entry should have atleast one parameter!")
                     del abc
+            # Update Values in Table either with condition or with no condition
             elif(command.startswith("updatevalue(") and command.endswith(")")):
                 if (cnt != 1):
                     print("ERROR: Not Connected !!")
@@ -313,11 +319,13 @@ def main(cnt):
                     else:
                         print("ERROR!! Entry should have atleast two parameter!")
                     del abc
+            # Clear the Screen
             elif(command == "clear()"):
                 if(cnt != 1):
                     print("ERROR: Not Connected !!")
                 else:
                     main(1)
+            # Documentation
             elif(command == "docs()"):
                 print("")
                 print("Copyright (c) 2018, Ambuj. All rights reserved.")
@@ -339,6 +347,7 @@ def main(cnt):
                 print("\tclear()                                                                 - To clear the Screen")
                 print("")
                 print("\tnote=> Username: 'system', password: '123'")
+            # Alter Table Name
             elif(command.startswith("altertable(") and command.endswith(")")):
                 if(cnt != 1):
                     print("ERROR: Not Connected !!")
@@ -363,6 +372,7 @@ def main(cnt):
                     except:
                         print("ERROR!! Invalid Table Name!")
                     del abc
+            # Drop Table
             elif(command.startswith("droptable(") and command.endswith(")")):
                 if (cnt != 1):
                     print("ERROR: Not Connected !!")
@@ -379,16 +389,18 @@ def main(cnt):
                     else:
                         print("ERROR!! Please Enter the Table name!")
                     del abc
+            # Logout From Current Session
             elif(command == "logout()"):
                 cnt = 0
                 print("Successfully Logged Out.")
             else:
                 print("Command not found!!(please ensure you include '()' at the end)")
+        # Handle KeyBoard Interrupt
         except KeyboardInterrupt:
             print("KEYBOARD INTERRUPT")
             dbu.close()
             db.close()
             os.system("cls")
             sys.exit(0)
-
+# Call the main function
 main(0)
