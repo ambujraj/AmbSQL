@@ -3,12 +3,20 @@ import getpass
 import string
 import sqlite3
 import os
-os.system("title "+"AmbSQL")
-try:
-    os.system("IF NOT EXIST C:\AmbSQL MKDIR C:\AmbSQL") # Create Folder AmbSQL for storage of Database file
-except:
-    pass
-path = 'C:\\AmbSQL\\'
+if(os.name=='nt'):
+    os.system("title "+"AmbSQL")
+    try:
+        os.system("IF NOT EXIST C:\AmbSQL MKDIR C:\AmbSQL") # Create Folder AmbSQL for storage of Database file
+    except:
+        pass
+    path = 'C:\\AmbSQL\\'
+# For Linux and MacOS
+else:
+    try:
+        os.system("mkdir DB")
+    except:
+        pass
+    path = 'DB/'
 db = sqlite3.connect(path+"dtables.db") # Connect to Tables Database
 c = db.cursor()
 dbu = sqlite3.connect(path+"duser.db") # Connect to Users Database
@@ -16,9 +24,11 @@ cu = dbu.cursor()
 cu.execute("CREATE TABLE IF NOT EXISTS USERS(id INTEGER PRIMARY KEY,user TEXT,pass TEXT)")
 dbu.commit()
 usern = ""
-
 def main(cnt):
-    os.system("cls")
+    if(os.name == 'nt'):
+        os.system("cls")
+    else:
+        os.system("clear")
     print("AmbSQL shell version: 1.0.2.0")
     print("")
     print("Type 'docs()' for documentation")
@@ -176,7 +186,6 @@ def main(cnt):
             elif(command.startswith("showvalues(") and command.endswith(")")):
                 if(cnt != 1):
                     print("ERROR: Not Connected !!")
-
                 else:
                     try:
                         abc = command[11:-1].upper().strip()
@@ -400,7 +409,10 @@ def main(cnt):
             print("KEYBOARD INTERRUPT")
             dbu.close()
             db.close()
-            os.system("cls")
+            if(os.name=='nt'):
+                os.system("cls")
+            else:
+                os.system("clear")
             sys.exit(0)
 # Call the main function
 main(0)

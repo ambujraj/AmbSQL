@@ -32,8 +32,7 @@ def insertvalues(tname="", *cols):
         x[s] = str(x[s])
     y = tuple(x)
     del x
-    c.execute("INSERT INTO "+tname +
-              " VALUES(NULL"+",?"*(len(cols))+")", y)
+    c.execute("INSERT INTO "+tname +" VALUES(NULL"+",?"*(len(cols))+")", y)
     db.commit()
 def showtable(tname=""):
     c.execute("pragma table_info('"+tname+"')")
@@ -41,8 +40,7 @@ def showtable(tname=""):
     print("       cid\t    name\t       pk")
     print("----------\t--------\t---------")
     for p, q, r, s, t, u in abv:
-        print(" "*(10-len(str(p)))+str(p)+"\t"+" " *
-              (8-len(str(q)))+str(q)+"\t"+" "*(9-len(str(u)))+str(u))
+        print(" "*(10-len(str(p)))+str(p)+"\t"+" " *(8-len(str(q)))+str(q)+"\t"+" "*(9-len(str(u)))+str(u))
     print("")
 def showvalues(tname=""):
     c.execute("pragma table_info('"+tname+"')")
@@ -65,8 +63,7 @@ def deletetable(tname=""):
     c.execute("DELETE FROM "+tname)
     db.commit()
 def altertable(otname="", ntname=""):
-    c.execute("ALTER TABLE "+otname +
-              " RENAME TO "+ntname)
+    c.execute("ALTER TABLE "+otname +" RENAME TO "+ntname)
     db.commit()
 def droptable(tname=""):
     c.execute("DROP TABLE "+tname)
