@@ -1,4 +1,4 @@
-![ambsql](https://user-images.githubusercontent.com/29935993/50136208-05269580-02bd-11e9-903b-83f337024a71.PNG)
+![ambsql](images/Screenshot.PNG)
 <br>
 # AmbSQL
 * AmbSQL is a Relational Database Management System which created with keeping in focus the speed and the ease to operate on.
