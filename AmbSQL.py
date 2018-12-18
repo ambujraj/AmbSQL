@@ -3,6 +3,7 @@ import getpass
 import string
 import sqlite3
 import os
+import datetime
 if(os.name=='nt'):
     os.system("title "+"AmbSQL")
     try:
@@ -29,7 +30,7 @@ def main(cnt):
         os.system("cls")
     else:
         os.system("clear")
-    print("AmbSQL shell version: 1.0.2.0")
+    print("AmbSQL shell version: 1.0.2.0   "+str(datetime.datetime.now()))
     print("")
     print("Type 'docs()' for documentation")
     print("")
@@ -415,4 +416,5 @@ def main(cnt):
                 os.system("clear")
             sys.exit(0)
 # Call the main function
-main(0)
+if __name__ == '__main__':
+    main(0)
