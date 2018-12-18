@@ -18,4 +18,4 @@
 > You can suggest us of new improvements you want by creating new Issue [here](https://github.com/ambujraj/AmbSQL/issues)
 
 # License
-[GPL-3.0 License](https://github.com/ambujraj/AmbSQL/blob/master/LICENSE)
+[MIT License](https://github.com/ambujraj/AmbSQL/blob/master/LICENSE)
