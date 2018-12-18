@@ -1,4 +1,4 @@
-import setuptools
+from setuptools import setup, find_packages
 from os import path
 with open("README.md", "r") as fh:
     long_description = fh.read()
@@ -13,7 +13,7 @@ install_requires = [x.strip() for x in all_reqs if 'git+' not in x]
 dependency_links = [x.strip().replace('git+', '') for x in all_reqs if x.startswith('git+')]
 
 
-setuptools.setup(
+setup(
     name="ambsql",
     version="1.0.2.0",
     author="Ambuj Raj",
@@ -22,7 +22,6 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/ambujraj/AmbSQL",
-    packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: GPL-3.0 License",
