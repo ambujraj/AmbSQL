@@ -10,7 +10,7 @@ if(os.name == 'nt'):
     path = 'C:\\AmbSQL\\'
 else:
     try:
-        os.system("mkdir DB")
+        os.system("mkdir -p DB")
     except:
         pass
     path = 'DB/'
