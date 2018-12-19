@@ -17,14 +17,14 @@
 
 ## For Python Package
 You can use one of the below methods to download and use this repository.<br><br>
-> Using pip:<br>
+Using pip:<br>
 `$ pip install ambsql`<br><br>
-> Manually using CLI:<br>
+Manually using CLI:<br>
 `$ git clone https://github.com/ambujraj/AmbSQL.git`<br>
 `$ cd AmbSQL`<br>
 `$ sudo python3 setup.py install (Linux and MacOS)`<br>
 `$ python setup.py install (Windows)`<br><br>
-> Manually using UI:<br>
+Manually using UI:<br>
 Go to the [repo on github](https://github.com/ambujraj/AmbSQL) => Click on 'Clone or Download' => Click on 'Download ZIP' and save it on your local disk.
 
 # Usage
