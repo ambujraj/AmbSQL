@@ -1,0 +1,25 @@
+#env
+env/
+env
+# pycharm
+.idea/
+.idea
+
+# Packages
+*.egg
+*.egg-info
+build
+dist
+dist/*
+eggs
+parts
+bin
+var
+sdist
+develop-eggs
+.installed.cfg
+lib
+lib64
+
+# Installer logs
+pip-log.txt

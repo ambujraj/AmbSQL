@@ -15,7 +15,7 @@ dependency_links = [x.strip().replace('git+', '') for x in all_reqs if x.startsw
 
 setup(
     name="ambsql",
-    version="1.0.2.0",
+    version="1.1.0",
     author="Ambuj Raj",
     author_email="thecoderguy@outlook.com",
     description="AmbSQL is a DBMS which is approx 10x faster and the most EASY to operate on.",

@@ -30,7 +30,7 @@ def main(cnt):
         os.system("cls")
     else:
         os.system("clear")
-    print("AmbSQL shell version: 1.0.2.0   "+str(datetime.datetime.now()))
+    print("AmbSQL shell version: 1.1.0   "+str(datetime.datetime.now()))
     print("")
     print("Type 'docs()' for documentation")
     print("")
