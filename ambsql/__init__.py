@@ -2,7 +2,7 @@
 from __future__ import absolute_import
 
 def main():
-    import library.ambsql
+    import ambsql.ambsql
 
 if __name__ == '__main__':
     main()
