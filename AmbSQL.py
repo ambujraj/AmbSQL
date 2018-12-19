@@ -14,7 +14,7 @@ if(os.name=='nt'):
 # For Linux and MacOS
 else:
     try:
-        os.system("mkdir DB")
+        os.system("mkdir -p DB")
     except:
         pass
     path = 'DB/'
@@ -30,7 +30,7 @@ def main(cnt):
         os.system("cls")
     else:
         os.system("clear")
-    print("AmbSQL shell version: 1.1.0   "+str(datetime.datetime.now()))
+    print("AmbSQL shell version: 1.1.1   "+str(datetime.datetime.now()))
     print("")
     print("Type 'docs()' for documentation")
     print("")
