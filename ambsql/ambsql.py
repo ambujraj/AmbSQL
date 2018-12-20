@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 import string
 import sqlite3
 import os
@@ -63,6 +62,41 @@ def showvalues(tname=""):
 def deletetable(tname=""):
     c.execute("DELETE FROM "+tname)
     db.commit()
+    
+def updatevalue(tname, colm, nval, conc, conv):
+    colm = str(colm)
+    conc = str(conc)
+    if(colm!='id' and colm!='ID'):
+        nval = str(nval)
+        if(conc == 'id' or conc == 'ID'):
+            conv = int(conv)
+            c.execute("UPDATE "+tname+" SET "+colm+"='"+nval+"' WHERE id="+str(conv))
+        else:
+            conv = str(conv)
+            c.execute("UPDATE "+tname+" SET "+colm+"='" +nval+"' WHERE "+conc+"='"+conv+"';")
+    else:
+        nval = int(nval)
+        if(conc == 'id' or conc == 'ID'):
+            c.execute("UPDATE "+tname+" SET "+colm+"="+nval+" WHERE id="+str(conv))
+        else:
+            c.execute("UPDATE "+tname+" SET "+colm+"=" +
+                      nval+" WHERE "+conc+"='"+conv+"';")
+    db.commit()
+'''
+def updatevalue(tname, colm, nval):
+    colm = str(colm)
+    if(colm!='id' and colm!='ID'):
+        nval = str(nval)
+    else:
+        nval = int(nval)
+    c.execute("UPDATE "+tname+" SET "+colm+"='"+nval+"';")
+    db.commit()
+'''
+def clear():
+    if(os.name=='nt'):
+        os.system("cls")
+    else:
+        os.system("clear")
 def altertable(otname="", ntname=""):
     c.execute("ALTER TABLE "+otname +" RENAME TO "+ntname)
     db.commit()
