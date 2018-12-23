@@ -1,6 +1,5 @@
 @import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css);
 @import url(https://fonts.googleapis.com/css?family=Lato:300,400,700);
-
 body {
 	font-family: 'Lato', sans-serif;
 	background: #353535;
@@ -83,10 +82,10 @@ a.animated-button:link, a.animated-button:visited {
 	transition: all 1s ease;
 }
 a.animated-button.abc {
-	border: 2px solid rgb(90, 77, 210);
+	border: 2px solid rgba(90, 77, 210,0.5);
 }
 a.animated-button.abc:after {
-	background: rgb(90, 77, 210);
+	background: rgba(90, 77, 210, 0.5);
 	-moz-transform: translateX(-50%) translateY(-50%) rotate(25deg);
 	-ms-transform: translateX(-50%) translateY(-50%) rotate(25deg);
 	-webkit-transform: translateX(-50%) translateY(-50%) rotate(25deg);
@@ -99,4 +98,7 @@ a.animated-button.abc:after {
 -moz-user-select: none;
 -ms-user-select: none;
 user-select: none;
+}
+a.animated-button.def {
+	border: 2px solid #b8c4d1;
 }
