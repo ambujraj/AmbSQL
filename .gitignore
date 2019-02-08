@@ -23,3 +23,7 @@ lib64
 
 # Installer logs
 pip-log.txt
+
+AmbSQL.spec
+__pycache__/
+
