@@ -1,3 +1,4 @@
+#!usr/bin/env python3
 import sys
 import getpass
 import string
@@ -14,10 +15,10 @@ if(os.name=='nt'):
 # For Linux and MacOS
 else:
     try:
-        os.system("mkdir -p DB")
+        os.system("mkdir -p /home/"+os.getlogin()+"/DB")
     except:
         pass
-    path = 'DB/'
+    path = '/home/'+os.getlogin()+'/DB/'
 db = sqlite3.connect(path+"dtables.db") # Connect to Tables Database
 c = db.cursor()
 dbu = sqlite3.connect(path+"duser.db") # Connect to Users Database
