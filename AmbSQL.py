@@ -175,15 +175,20 @@ def main(cnt):
                         try:
                             c.execute("pragma table_info('"+abc+"')")
                             abv = c.fetchall()
-                            print("       cid\t    name\t       pk")
-                            print("----------\t--------\t---------")
-                            for p, q, r, s, t, u in abv:
-                                print(" "*(10-len(str(p)))+str(p)+"\t"+" " *(8-len(str(q)))+str(q)+"\t"+" "*(9-len(str(u)))+str(u))
-                            print("")
+                            if(len(abv) > 0):                                   #Added Condition check, whether abv object contains something
+                                print("       cid\t    name\t       pk")
+                                print("----------\t--------\t---------")
+                                for p, q, r, s, t, u in abv:
+                                    print(" "*(10-len(str(p)))+str(p)+"\t"+" " *(8-len(str(q)))+str(q)+"\t"+" "*(9-len(str(u)))+str(u))
+                                print("")
+                            else:                                              #Else Table not found in database
+                                print("Table Not Found!")
+    
                         except:
-                            print("ERROR!! Table Not Found!")
+                            print("ERROR!! Please Enter the correct table!")
                     else:
                         print("ERROR!! Please Enter the Table name!")
+                    del abc                                                     #Added
             # Show Values In Table
             elif(command.startswith("showvalues(") and command.endswith(")")):
                 if(cnt != 1):
