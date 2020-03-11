@@ -85,6 +85,35 @@ def main(cnt):
                     else:
                         print("ERROR!! Please Enter the Table name!")
                     del abc
+            
+            # Sum Values of an Attribute in Table
+            elif(command.startswith("sumvalue(") and command.endswith(")")):
+                if(cnt != 1):
+                    print("ERROR: Not Connected")
+                else:
+                    try:
+                        abc = command[9:-1].strip()
+                        if(len(abc) != 0):
+                            l1 = abc.split(",")
+                            if(len(l1) == 2):
+                                tname = str(l1[0])
+                                attr = str(l1[1])
+
+                                c.execute("SELECT SUM("+attr+") FROM " + tname)
+                                ans = list(c.fetchone())
+                                ans = str(ans).strip('[]')
+                                print("Sum : " + ans)
+                                del ans, tname, attr, l1
+                            else:
+                                print("Error: There should be only two parameters") 
+                        else:
+                            print("ERROR: Please Enter the command correctly")
+                             
+                        del abc  
+                    except:
+                        print("ERROR: Please Enter the parameters correctly")
+                        
+                                
             # Insert Values into Table
             elif(command.startswith("insertvalues(") and command.endswith(")")):
                 if(cnt != 1):
@@ -205,6 +234,9 @@ def main(cnt):
                     else:
                         print("ERROR!! Please Enter the Table name!")
                     del abc
+
+          
+                            
             # Show Values In Table
             elif(command.startswith("showvalues(") and command.endswith(")")):
                 if(cnt != 1):
@@ -372,6 +404,7 @@ def main(cnt):
                 print("\tdeletetable(<table_name>)                                               - To truncate the Table")
                 print("\tdeletetable(<table_name> , <condition>)(e.g- deletetable(ab,name==jack))- To delete row(s) from Table")
                 print("\tcounttable(<table_name>)                                                - To count the rows/records of Table")  #Documentation Updated for count()
+                print("\tsumvalue(<table_name>, <attribute>)                                     - To sum of records of particular attribute of Table") #Function Added
                 print("\tdroptable(<table_name>)                                                 - To drop the Table")
                 print("\taltertable(<old-table_name> , <new-table_name>)                         - To rename Table Name")
                 print("\tcreateuser(<user_name> , <password>)                                    - To create new User")
