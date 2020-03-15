@@ -189,6 +189,29 @@ def main(cnt):
                     else:
                         print("ERROR!! Please Enter the Table name!")
                     del abc                                                     #Added
+
+
+
+            #Count the number of rows/records in a Table
+            elif(command.startswith("counttable(") and command.endswith(")")):
+                if(cnt != 1):
+                    print("ERROR: Not Connected !!")
+                else:
+                    abc = command[11:-1].strip()
+                    if(len(abc) != 0):
+                        l1= abc.split(",")
+                        if(len(l1) == 1):
+                            tname = str(l1[0])
+                            try:
+                                c.execute("SELECT COUNT(*) FROM " + tname)
+                                ans = list(c.fetchone())
+                                print(str(ans).strip('[]') + " Record(s)")
+                                del l1, tname, ans
+                            except:
+                                print("NO TABLE FOUND")
+                    else:
+                        print("ERROR!! Please Enter the Table name!")
+                    del abc
             # Show Values In Table
             elif(command.startswith("showvalues(") and command.endswith(")")):
                 if(cnt != 1):
@@ -356,6 +379,7 @@ def main(cnt):
                 print("\tdeletetable(<table_name>)                                               - To truncate the Table")
                 print("\tdeletetable(<table_name> , <condition>)(e.g- deletetable(ab,name==jack))- To delete row(s) from Table")
                 print("\tdroptable(<table_name>)                                                 - To drop the Table")
+                print("\tcounttable(<table_name>)                                                - To count the rows/records of Table")  #Documentation Updated for count()
                 print("\taltertable(<old-table_name> , <new-table_name>)                         - To rename Table Name")
                 print("\tcreateuser(<user_name> , <password>)                                    - To create new User")
                 print("\tdeleteuser(<user_name>)                                                 - To delete a User")
