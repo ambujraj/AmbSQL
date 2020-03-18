@@ -1,6 +1,7 @@
-language: python
-sudo: false
-python:
-    - "3.6"
-script:
-    - pytest
+language : python
+os: linux
+dist : xenial
+sudo : false
+python : 3.6
+script: pytest
+group : stable 
