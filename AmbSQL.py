@@ -85,6 +85,35 @@ def main(cnt):
                     else:
                         print("ERROR!! Please Enter the Table name!")
                     del abc
+            
+            # Sum Values of an Attribute in Table
+            elif(command.startswith("sumvalue(") and command.endswith(")")):
+                if(cnt != 1):
+                    print("ERROR: Not Connected")
+                else:
+                    try:
+                        abc = command[9:-1].strip()
+                        if(len(abc) != 0):
+                            l1 = abc.split(",")
+                            if(len(l1) == 2):
+                                tname = str(l1[0])
+                                attr = str(l1[1])
+
+                                c.execute("SELECT SUM("+attr+") FROM " + tname)
+                                ans = list(c.fetchone())
+                                ans = str(ans).strip('[]')
+                                print("Sum : " + ans)
+                                del ans, tname, attr, l1
+                            else:
+                                print("Error: There should be only two parameters") 
+                        else:
+                            print("ERROR: Please Enter the command correctly")
+                             
+                        del abc  
+                    except:
+                        print("ERROR: Please Enter the parameters correctly")
+                        
+                                
             # Insert Values into Table
             elif(command.startswith("insertvalues(") and command.endswith(")")):
                 if(cnt != 1):
@@ -175,15 +204,50 @@ def main(cnt):
                         try:
                             c.execute("pragma table_info('"+abc+"')")
                             abv = c.fetchall()
-                            print("       cid\t    name\t       pk")
-                            print("----------\t--------\t---------")
-                            for p, q, r, s, t, u in abv:
-                                print(" "*(10-len(str(p)))+str(p)+"\t"+" " *(8-len(str(q)))+str(q)+"\t"+" "*(9-len(str(u)))+str(u))
-                            print("")
+                            if(len(abv) > 0):                                   #Added Condition check, whether abv object contains something
+                                print("       cid\t    name\t       pk")
+                                print("----------\t--------\t---------")
+                                for p, q, r, s, t, u in abv:
+                                    print(" "*(10-len(str(p)))+str(p)+"\t"+" " *(8-len(str(q)))+str(q)+"\t"+" "*(9-len(str(u)))+str(u))
+                                print("")
+                            else:                                              #Else Table not found in database
+                                print("Table Not Found!")
+    
                         except:
-                            print("ERROR!! Table Not Found!")
+                            print("ERROR!! Please Enter the correct table!")
                     else:
                         print("ERROR!! Please Enter the Table name!")
+
+                    del abc                                                     #Added
+
+
+
+
+            
+
+            #Count the number of rows/records in a Table
+            elif(command.startswith("counttable(") and command.endswith(")")):
+                if(cnt != 1):
+                    print("ERROR: Not Connected !!")
+                else:
+                    abc = command[11:-1].strip()
+                    if(len(abc) != 0):
+                        l1= abc.split(",")
+                        if(len(l1) == 1):
+                            tname = str(l1[0])
+                            try:
+                                c.execute("SELECT COUNT(*) FROM " + tname)
+                                ans = list(c.fetchone())
+                                print(str(ans).strip('[]') + " Record(s)")
+                                del l1, tname, ans
+                            except:
+                                print("NO TABLE FOUND")
+                    else:
+                        print("ERROR!! Please Enter the Table name!")
+                    del abc
+
+          
+                            
             # Show Values In Table
             elif(command.startswith("showvalues(") and command.endswith(")")):
                 if(cnt != 1):
@@ -350,7 +414,10 @@ def main(cnt):
                 print("\tupdatevalue(<table_name> , <assignment> , <condition>)                  - To Update the values of column")
                 print("\tdeletetable(<table_name>)                                               - To truncate the Table")
                 print("\tdeletetable(<table_name> , <condition>)(e.g- deletetable(ab,name==jack))- To delete row(s) from Table")
+                print("\tcounttable(<table_name>)                                                - To count the rows/records of Table")  #Documentation Updated for count()
+                print("\tsumvalue(<table_name>, <attribute>)                                     - To sum of records of particular attribute of Table") #Function Added
                 print("\tdroptable(<table_name>)                                                 - To drop the Table")
+                print("\tcounttable(<table_name>)                                                - To count the rows/records of Table")  #Documentation Updated for count()
                 print("\taltertable(<old-table_name> , <new-table_name>)                         - To rename Table Name")
                 print("\tcreateuser(<user_name> , <password>)                                    - To create new User")
                 print("\tdeleteuser(<user_name>)                                                 - To delete a User")
