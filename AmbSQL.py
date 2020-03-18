@@ -171,6 +171,34 @@ def main(cnt):
                         del abc  
                     except:
                         print("ERROR: Please Enter the parameters correctly")
+
+            # Average Value of an Attribute in Table
+            #Note: It only works on Integer-type (numerical attributes)
+            elif(command.startswith("avgvalue(") and command.endswith(")")):
+                if(cnt != 1):
+                    print("ERROR: Not Connected")
+                else:
+                    try:
+                        abc = command[9:-1].strip()
+                        if(len(abc) != 0):
+                            l1 = abc.split(",")
+                            if(len(l1) == 2):
+                                tname = str(l1[0])
+                                attr = str(l1[1])
+
+                                c.execute("SELECT AVG("+attr+") FROM " + tname)
+                                ans = list(c.fetchone())
+                                ans = str(ans).strip('[]')
+                                print("Average : " + ans)
+                                del ans, tname, attr, l1
+                            else:
+                                print("Error: There should be only two parameters") 
+                        else:
+                            print("ERROR: Please Enter the command correctly")
+                             
+                        del abc  
+                    except:
+                        print("ERROR: Please Enter the parameters correctly")
                         
                                 
             # Insert Values into Table
@@ -477,6 +505,7 @@ def main(cnt):
                 print("\tsumvalue(<table_name>, <attribute>)                                     - To sum of records of particular attribute of Table") #Function Added
                 print("\tmaxvalue(<table_name>, <attribute>)                                     - To find the max value of particular attribute of Table") #Function Added 
                 print("\tminvalue(<table_name>, <attribute>)                                     - To find the min value of particular attribute of Table") #Function Added 
+                print("\tavgvalue(<table_name>, <attribute>)                                     - To find the average value of particular attribute of Table") #Function Added
                 print("\tdroptable(<table_name>)                                                 - To drop the Table")
                 print("\tcounttable(<table_name>)                                                - To count the rows/records of Table")  #Documentation Updated for count()
                 print("\taltertable(<old-table_name> , <new-table_name>)                         - To rename Table Name")
