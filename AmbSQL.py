@@ -112,6 +112,37 @@ def main(cnt):
                         del abc  
                     except:
                         print("ERROR: Please Enter the parameters correctly")
+
+             	 
+
+
+            # Max Values of an Attribute in Table
+            #Note: It only works on Integer-type (numerical attributes)
+            elif(command.startswith("maxvalue(") and command.endswith(")")):
+                if(cnt != 1):
+                    print("ERROR: Not Connected")
+                else:
+                    try:
+                        abc = command[9:-1].strip()
+                        if(len(abc) != 0):
+                            l1 = abc.split(",")
+                            if(len(l1) == 2):
+                                tname = str(l1[0])
+                                attr = str(l1[1])
+
+                                c.execute("SELECT MAX("+attr+") FROM " + tname)
+                                ans = list(c.fetchone())
+                                ans = str(ans).strip('[]')
+                                print("Max : " + ans)
+                                del ans, tname, attr, l1
+                            else:
+                                print("Error: There should be only two parameters") 
+                        else:
+                            print("ERROR: Please Enter the command correctly")
+                             
+                        del abc  
+                    except:
+                        print("ERROR: Please Enter the parameters correctly")
                         
                                 
             # Insert Values into Table
@@ -416,6 +447,7 @@ def main(cnt):
                 print("\tdeletetable(<table_name> , <condition>)(e.g- deletetable(ab,name==jack))- To delete row(s) from Table")
                 print("\tcounttable(<table_name>)                                                - To count the rows/records of Table")  #Documentation Updated for count()
                 print("\tsumvalue(<table_name>, <attribute>)                                     - To sum of records of particular attribute of Table") #Function Added
+                print("\tmaxvalue(<table_name>, <attribute>)                                     - To find the max value of particular attribute of Table") #Function Added 
                 print("\tdroptable(<table_name>)                                                 - To drop the Table")
                 print("\tcounttable(<table_name>)                                                - To count the rows/records of Table")  #Documentation Updated for count()
                 print("\taltertable(<old-table_name> , <new-table_name>)                         - To rename Table Name")
