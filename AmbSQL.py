@@ -188,9 +188,13 @@ def main(cnt):
                             print("ERROR!! Please Enter the correct table!")
                     else:
                         print("ERROR!! Please Enter the Table name!")
+
                     del abc                                                     #Added
 
 
+
+
+            
 
             #Count the number of rows/records in a Table
             elif(command.startswith("counttable(") and command.endswith(")")):
@@ -378,6 +382,7 @@ def main(cnt):
                 print("\tupdatevalue(<table_name> , <assignment> , <condition>)                  - To Update the values of column")
                 print("\tdeletetable(<table_name>)                                               - To truncate the Table")
                 print("\tdeletetable(<table_name> , <condition>)(e.g- deletetable(ab,name==jack))- To delete row(s) from Table")
+                print("\tcounttable(<table_name>)                                                - To count the rows/records of Table")  #Documentation Updated for count()
                 print("\tdroptable(<table_name>)                                                 - To drop the Table")
                 print("\tcounttable(<table_name>)                                                - To count the rows/records of Table")  #Documentation Updated for count()
                 print("\taltertable(<old-table_name> , <new-table_name>)                         - To rename Table Name")
