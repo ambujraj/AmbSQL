@@ -175,16 +175,27 @@ def main(cnt):
                         try:
                             c.execute("pragma table_info('"+abc+"')")
                             abv = c.fetchall()
-                            print("       cid\t    name\t       pk")
-                            print("----------\t--------\t---------")
-                            for p, q, r, s, t, u in abv:
-                                print(" "*(10-len(str(p)))+str(p)+"\t"+" " *(8-len(str(q)))+str(q)+"\t"+" "*(9-len(str(u)))+str(u))
-                            print("")
+                            if(len(abv) > 0):                                   #Added Condition check, whether abv object contains something
+                                print("       cid\t    name\t       pk")
+                                print("----------\t--------\t---------")
+                                for p, q, r, s, t, u in abv:
+                                    print(" "*(10-len(str(p)))+str(p)+"\t"+" " *(8-len(str(q)))+str(q)+"\t"+" "*(9-len(str(u)))+str(u))
+                                print("")
+                            else:                                              #Else Table not found in database
+                                print("Table Not Found!")
+    
                         except:
-                            print("ERROR!! Table Not Found!")
+                            print("ERROR!! Please Enter the correct table!")
                     else:
                         print("ERROR!! Please Enter the Table name!")
+
+                    del abc                                                     #Added
+
+
+
+
             
+
             #Count the number of rows/records in a Table
             elif(command.startswith("counttable(") and command.endswith(")")):
                 if(cnt != 1):
@@ -373,6 +384,7 @@ def main(cnt):
                 print("\tdeletetable(<table_name> , <condition>)(e.g- deletetable(ab,name==jack))- To delete row(s) from Table")
                 print("\tcounttable(<table_name>)                                                - To count the rows/records of Table")  #Documentation Updated for count()
                 print("\tdroptable(<table_name>)                                                 - To drop the Table")
+                print("\tcounttable(<table_name>)                                                - To count the rows/records of Table")  #Documentation Updated for count()
                 print("\taltertable(<old-table_name> , <new-table_name>)                         - To rename Table Name")
                 print("\tcreateuser(<user_name> , <password>)                                    - To create new User")
                 print("\tdeleteuser(<user_name>)                                                 - To delete a User")
