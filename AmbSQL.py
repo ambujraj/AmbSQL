@@ -561,6 +561,8 @@ def main(cnt):
                 print("\tavgvalue(<table_name>, <attribute>)                                     - To find the average value of particular attribute of Table") #Function Added
                 print("\tdroptable(<table_name>)                                                 - To drop the Table")
                 print("\tcounttable(<table_name>)                                                - To count the rows/records of Table")  #Documentation Updated for count()
+                print("\ttolower(<string>)                                                       - To change the string to lower case")
+                print("\ttoupper(<string>)                                                       - To change the string to upper case")
                 print("\taltertable(<old-table_name> , <new-table_name>)                         - To rename Table Name")
                 print("\tcreateuser(<user_name> , <password>)                                    - To create new User")
                 print("\ttoday()                                                                 - To fetch the current date")
