@@ -199,7 +199,24 @@ def main(cnt):
                         del abc  
                     except:
                         print("ERROR: Please Enter the parameters correctly")
-                        
+
+            #Fetched the currect DATE
+            elif(command.startswith("today(") and command.endswith(")")):
+                if(cnt != 1):
+                    print("ERROR: Not Connected")
+                else:
+                    abc = command[9:-1].strip()
+                    if (len(abc) == 0):
+                        try:
+                            c.execute("SELECT DATE('now')")
+                            ans = list(c.fetchone())
+                            ans = str(ans).strip('[]')
+                            print("Today's Date: " + ans)
+                        except:
+                            print("Please Enter the command correctly")
+                    else:
+                        print("ERROR: Please Enter the command correctly")
+
                                 
             # Insert Values into Table
             elif(command.startswith("insertvalues(") and command.endswith(")")):
