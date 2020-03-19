@@ -200,6 +200,66 @@ def main(cnt):
                     except:
                         print("ERROR: Please Enter the parameters correctly")
 
+            #replace Function added to replace all the occurences with another string
+            elif(command.startswith("replace(") and command.endswith(")")):
+                if(cnt != 1):
+                    print("ERROR: Not Connected")
+                else:
+                    try:
+                        abc = command[8:-1].upper().strip()
+                        if(len(abc) != 0):
+                            l1 = abc.split(",")
+                            if(len(l1) == 3):
+                                full_str = str(l1[0])
+                                st1 = str(l1[1])
+                                st2 = str(l1[2])
+                               
+                                c.execute("SELECT REPLACE('"+full_str+"','"+st1+"','"+st2+"')")
+                                
+                                ans = list(c.fetchone())
+                                ans = str(ans).strip('[]')
+                                print("FINAL STRING : " + ans)
+                                del ans, full_str,st1,st2, l1
+                            else:
+                                print("Error: There should be only three parameters") 
+                        else:
+                            print("ERROR: Please Enter the command correctly")
+                             
+                        del abc  
+                    except:
+                        print("ERROR: Please Enter the parameters correctly")
+
+
+             #Substring Function to extract the characters from a string
+            elif(command.startswith("substr(") and command.endswith(")")):
+                if(cnt != 1):
+                    print("ERROR: Not Connected")
+                else:
+                    try:
+                        abc = command[7:-1].strip()
+                        if(len(abc) != 0):
+                            l1 = abc.split(",")
+                            if(len(l1) == 3):
+                                full_str = str(l1[0])
+                                st1 = str(l1[1])
+                                st2 = str(l1[2])
+                               
+                                c.execute("SELECT substr('"+full_str+"','"+st1+"','"+st2+"')")
+                                
+                                ans = list(c.fetchone())
+                                ans = str(ans).strip('[]')
+                                print("SUB STRING : " + ans)
+                                del ans, full_str,st1,st2, l1
+                            else:
+                                print("Error: There should be only three parameters") 
+                        else:
+                            print("ERROR: Please Enter the command correctly")
+                             
+                        del abc  
+                    except:
+                        print("ERROR: Please Enter the parameters correctly")
+
+
             #Fetched the currect DATE
             elif(command.startswith("today(") and command.endswith(")")):
                 if(cnt != 1):
@@ -247,6 +307,26 @@ def main(cnt):
                             s = str(l1[0])
                             s = s.upper()
                             print(s)
+                        else:
+                            print("ERROR: There should only be one parameter")
+
+                    else:
+                        print("ERROR: Please Enter the command correctly")
+
+
+             #Length of a string 
+            elif(command.startswith("length(") and command.endswith(")")):
+                if(cnt != 1):
+                    print("ERROR: Not Connected")
+                else:
+                    abc = command[7:-1].strip()
+                    if (len(abc) != 0):
+                        l1 = abc.split(",")
+                        if(len(l1) == 1):
+                            s = str(l1[0])
+                            s = int(len(s))
+                            print(s)
+                            
                         else:
                             print("ERROR: There should only be one parameter")
 
@@ -566,6 +646,9 @@ def main(cnt):
                 print("\taltertable(<old-table_name> , <new-table_name>)                         - To rename Table Name")
                 print("\tcreateuser(<user_name> , <password>)                                    - To create new User")
                 print("\ttoday()                                                                 - To fetch the current date")
+                print("\treplace(<string>,<first_char>,<second_char>)                            - To replace all occurrences of a specified string with another string")
+                print("\tlength()                                                                - To fetch the length of a string")
+                print("\tsubstr(<string>,<start_index>,<end_index>)                              - To fetch a substring from a string starting at a specified position with a predefined length")
                 print("\tdeleteuser(<user_name>)                                                 - To delete a User")
                 print("\tlogout()                                                                - To Logout")
                 print("\tclear()                                                                 - To clear the Screen")
