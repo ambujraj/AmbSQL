@@ -648,6 +648,7 @@ def main(cnt):
                 print("\ttoday()                                                                 - To fetch the current date")
                 print("\treplace(<string>,<first_char>,<second_char>)                            - To replace all occurrences of a specified string with another string")
                 print("\tlength()                                                                - To fetch the length of a string")
+                print("\tsubstr(<string>,<start_index>,<end_index>)                              - To fetch a substring from a string starting at a specified position with a predefined length")
                 print("\tdeleteuser(<user_name>)                                                 - To delete a User")
                 print("\tlogout()                                                                - To Logout")
                 print("\tclear()                                                                 - To clear the Screen")
