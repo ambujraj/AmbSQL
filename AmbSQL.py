@@ -253,6 +253,26 @@ def main(cnt):
                     else:
                         print("ERROR: Please Enter the command correctly")
 
+
+             #Length of a string 
+            elif(command.startswith("length(") and command.endswith(")")):
+                if(cnt != 1):
+                    print("ERROR: Not Connected")
+                else:
+                    abc = command[7:-1].strip()
+                    if (len(abc) != 0):
+                        l1 = abc.split(",")
+                        if(len(l1) == 1):
+                            s = str(l1[0])
+                            s = int(len(s))
+                            print(s)
+                            
+                        else:
+                            print("ERROR: There should only be one parameter")
+
+                    else:
+                        print("ERROR: Please Enter the command correctly")
+
                                 
             # Insert Values into Table
             elif(command.startswith("insertvalues(") and command.endswith(")")):
@@ -566,6 +586,7 @@ def main(cnt):
                 print("\taltertable(<old-table_name> , <new-table_name>)                         - To rename Table Name")
                 print("\tcreateuser(<user_name> , <password>)                                    - To create new User")
                 print("\ttoday()                                                                 - To fetch the current date")
+                print("\tlength()                                                                - To fetch the length of a string")
                 print("\tdeleteuser(<user_name>)                                                 - To delete a User")
                 print("\tlogout()                                                                - To Logout")
                 print("\tclear()                                                                 - To clear the Screen")
