@@ -217,6 +217,42 @@ def main(cnt):
                     else:
                         print("ERROR: Please Enter the command correctly")
 
+            #Lower case 
+            elif(command.startswith("tolower(") and command.endswith(")")):
+                if(cnt != 1):
+                    print("ERROR: Not Connected")
+                else:
+                    abc = command[8:-1].strip()
+                    if (len(abc) != 0):
+                        l1 = abc.split(",")
+                        if(len(l1) == 1):
+                            s = str(l1[0])
+                            s = s.lower()
+                            print(s)
+                        else:
+                            print("ERROR: There should only be one parameter")
+
+                    else:
+                        print("ERROR: Please Enter the command correctly")
+
+            #Upper case 
+            elif(command.startswith("toupper(") and command.endswith(")")):
+                if(cnt != 1):
+                    print("ERROR: Not Connected")
+                else:
+                    abc = command[8:-1].strip()
+                    if (len(abc) != 0):
+                        l1 = abc.split(",")
+                        if(len(l1) == 1):
+                            s = str(l1[0])
+                            s = s.upper()
+                            print(s)
+                        else:
+                            print("ERROR: There should only be one parameter")
+
+                    else:
+                        print("ERROR: Please Enter the command correctly")
+
                                 
             # Insert Values into Table
             elif(command.startswith("insertvalues(") and command.endswith(")")):
@@ -527,6 +563,7 @@ def main(cnt):
                 print("\tcounttable(<table_name>)                                                - To count the rows/records of Table")  #Documentation Updated for count()
                 print("\taltertable(<old-table_name> , <new-table_name>)                         - To rename Table Name")
                 print("\tcreateuser(<user_name> , <password>)                                    - To create new User")
+                print("\ttoday()                                                                 - To fetch the current date")
                 print("\tdeleteuser(<user_name>)                                                 - To delete a User")
                 print("\tlogout()                                                                - To Logout")
                 print("\tclear()                                                                 - To clear the Screen")
