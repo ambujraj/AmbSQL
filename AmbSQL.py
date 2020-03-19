@@ -200,6 +200,36 @@ def main(cnt):
                     except:
                         print("ERROR: Please Enter the parameters correctly")
 
+            #replace Function added to replace all the occurences with another string
+            elif(command.startswith("replace(") and command.endswith(")")):
+                if(cnt != 1):
+                    print("ERROR: Not Connected")
+                else:
+                    try:
+                        abc = command[8:-1].upper().strip()
+                        if(len(abc) != 0):
+                            l1 = abc.split(",")
+                            if(len(l1) == 3):
+                                full_str = str(l1[0])
+                                st1 = str(l1[1])
+                                st2 = str(l1[2])
+                               
+                                c.execute("SELECT REPLACE('"+full_str+"','"+st1+"','"+st2+"')")
+                                
+                                ans = list(c.fetchone())
+                                ans = str(ans).strip('[]')
+                                print("FINAL STRING : " + ans)
+                                del ans, full_str,st1,st2, l1
+                            else:
+                                print("Error: There should be only three parameters") 
+                        else:
+                            print("ERROR: Please Enter the command correctly")
+                             
+                        del abc  
+                    except:
+                        print("ERROR: Please Enter the parameters correctly")
+
+
             #Fetched the currect DATE
             elif(command.startswith("today(") and command.endswith(")")):
                 if(cnt != 1):
@@ -586,6 +616,7 @@ def main(cnt):
                 print("\taltertable(<old-table_name> , <new-table_name>)                         - To rename Table Name")
                 print("\tcreateuser(<user_name> , <password>)                                    - To create new User")
                 print("\ttoday()                                                                 - To fetch the current date")
+                print("\treplace(<string>,<first_char>,<second_char>)                            - To replace all occurrences of a specified string with another string")
                 print("\tlength()                                                                - To fetch the length of a string")
                 print("\tdeleteuser(<user_name>)                                                 - To delete a User")
                 print("\tlogout()                                                                - To Logout")
