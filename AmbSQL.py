@@ -171,7 +171,88 @@ def main(cnt):
                         del abc  
                     except:
                         print("ERROR: Please Enter the parameters correctly")
-                        
+
+            # Average Value of an Attribute in Table
+            #Note: It only works on Integer-type (numerical attributes)
+            elif(command.startswith("avgvalue(") and command.endswith(")")):
+                if(cnt != 1):
+                    print("ERROR: Not Connected")
+                else:
+                    try:
+                        abc = command[9:-1].strip()
+                        if(len(abc) != 0):
+                            l1 = abc.split(",")
+                            if(len(l1) == 2):
+                                tname = str(l1[0])
+                                attr = str(l1[1])
+
+                                c.execute("SELECT AVG("+attr+") FROM " + tname)
+                                ans = list(c.fetchone())
+                                ans = str(ans).strip('[]')
+                                print("Average : " + ans)
+                                del ans, tname, attr, l1
+                            else:
+                                print("Error: There should be only two parameters") 
+                        else:
+                            print("ERROR: Please Enter the command correctly")
+                             
+                        del abc  
+                    except:
+                        print("ERROR: Please Enter the parameters correctly")
+
+            #Fetched the currect DATE
+            elif(command.startswith("today(") and command.endswith(")")):
+                if(cnt != 1):
+                    print("ERROR: Not Connected")
+                else:
+                    abc = command[9:-1].strip()
+                    if (len(abc) == 0):
+                        try:
+                            c.execute("SELECT DATE('now')")
+                            ans = list(c.fetchone())
+                            ans = str(ans).strip('[]')
+                            print("Today's Date: " + ans)
+                        except:
+                            print("Please Enter the command correctly")
+                    else:
+                        print("ERROR: Please Enter the command correctly")
+
+            #Lower case 
+            elif(command.startswith("tolower(") and command.endswith(")")):
+                if(cnt != 1):
+                    print("ERROR: Not Connected")
+                else:
+                    abc = command[8:-1].strip()
+                    if (len(abc) != 0):
+                        l1 = abc.split(",")
+                        if(len(l1) == 1):
+                            s = str(l1[0])
+                            s = s.lower()
+                            print(s)
+                        else:
+                            print("ERROR: There should only be one parameter")
+
+                    else:
+                        print("ERROR: Please Enter the command correctly")
+
+            #Upper case 
+            elif(command.startswith("toupper(") and command.endswith(")")):
+                if(cnt != 1):
+                    print("ERROR: Not Connected")
+                else:
+                    abc = command[8:-1].strip()
+                    if (len(abc) != 0):
+                        l1 = abc.split(",")
+                        if(len(l1) == 1):
+                            s = str(l1[0])
+                            s = s.upper()
+                            print(s)
+                        else:
+                            print("ERROR: There should only be one parameter")
+
+                    else:
+                        print("ERROR: Please Enter the command correctly")
+
                                 
             # Insert Values into Table
             elif(command.startswith("insertvalues(") and command.endswith(")")):
@@ -477,10 +558,14 @@ def main(cnt):
                 print("\tsumvalue(<table_name>, <attribute>)                                     - To sum of records of particular attribute of Table") #Function Added
                 print("\tmaxvalue(<table_name>, <attribute>)                                     - To find the max value of particular attribute of Table") #Function Added 
                 print("\tminvalue(<table_name>, <attribute>)                                     - To find the min value of particular attribute of Table") #Function Added 
+                print("\tavgvalue(<table_name>, <attribute>)                                     - To find the average value of particular attribute of Table") #Function Added
                 print("\tdroptable(<table_name>)                                                 - To drop the Table")
                 print("\tcounttable(<table_name>)                                                - To count the rows/records of Table")  #Documentation Updated for count()
+                print("\ttolower(<string>)                                                       - To change the string to lower case")
+                print("\ttoupper(<string>)                                                       - To change the string to upper case")
                 print("\taltertable(<old-table_name> , <new-table_name>)                         - To rename Table Name")
                 print("\tcreateuser(<user_name> , <password>)                                    - To create new User")
+                print("\ttoday()                                                                 - To fetch the current date")
                 print("\tdeleteuser(<user_name>)                                                 - To delete a User")
                 print("\tlogout()                                                                - To Logout")
                 print("\tclear()                                                                 - To clear the Screen")
