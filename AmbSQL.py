@@ -230,6 +230,36 @@ def main(cnt):
                         print("ERROR: Please Enter the parameters correctly")
 
 
+             #Substring Function to extract the characters from a string
+            elif(command.startswith("substr(") and command.endswith(")")):
+                if(cnt != 1):
+                    print("ERROR: Not Connected")
+                else:
+                    try:
+                        abc = command[7:-1].strip()
+                        if(len(abc) != 0):
+                            l1 = abc.split(",")
+                            if(len(l1) == 3):
+                                full_str = str(l1[0])
+                                st1 = str(l1[1])
+                                st2 = str(l1[2])
+                               
+                                c.execute("SELECT substr('"+full_str+"','"+st1+"','"+st2+"')")
+                                
+                                ans = list(c.fetchone())
+                                ans = str(ans).strip('[]')
+                                print("SUB STRING : " + ans)
+                                del ans, full_str,st1,st2, l1
+                            else:
+                                print("Error: There should be only three parameters") 
+                        else:
+                            print("ERROR: Please Enter the command correctly")
+                             
+                        del abc  
+                    except:
+                        print("ERROR: Please Enter the parameters correctly")
+
+
             #Fetched the currect DATE
             elif(command.startswith("today(") and command.endswith(")")):
                 if(cnt != 1):
