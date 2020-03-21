@@ -333,6 +333,30 @@ def main(cnt):
                     else:
                         print("ERROR: Please Enter the command correctly")
 
+
+            #Absolute Function to return only positive numeric type value
+            elif(command.startswith("absolute(") and command.endswith(")")):
+                if(cnt != 1):
+                    print("ERROR: Not Connected")
+                else:
+                    abc = command[9:-1].strip()
+                    if (len(abc) != 0):
+                        l1 = abc.split(",")
+                        if(len(l1) == 1):
+                            try:
+                                s = int(l1[0])
+                                s = abs(s)
+                                print(s)
+                            except:
+                                print("ERROR: Please Enter an integer numeric value")
+
+                            
+                        else:
+                            print("ERROR: There should only be one parameter")
+
+                    else:
+                        print("ERROR: Please Enter the command correctly")
+
                                 
             # Insert Values into Table
             elif(command.startswith("insertvalues(") and command.endswith(")")):
@@ -643,6 +667,7 @@ def main(cnt):
                 print("\tcounttable(<table_name>)                                                - To count the rows/records of Table")  #Documentation Updated for count()
                 print("\ttolower(<string>)                                                       - To change the string to lower case")
                 print("\ttoupper(<string>)                                                       - To change the string to upper case")
+                print("\tabsolute(<integer_value>)                                               - To find the absolute value") #Function Added
                 print("\taltertable(<old-table_name> , <new-table_name>)                         - To rename Table Name")
                 print("\tcreateuser(<user_name> , <password>)                                    - To create new User")
                 print("\ttoday()                                                                 - To fetch the current date")
