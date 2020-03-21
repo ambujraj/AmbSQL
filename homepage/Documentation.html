@@ -1,0 +1,78 @@
+<html>
+<head>
+  <title>AmbSQL RDBMS</title>
+  <meta charset="utf-8">
+  <link rel="icon" href="ico/db.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#myPage"><span class="glyphicon glyphicon-cloud-upload"></span></a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="AMSql.html">HOME</a></li>
+        <li><a href="Documentation.html">DOCUMENTATION</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="jumbotron text-center">
+  <h1>AmbSQL</h1> 
+  <p>Fast Pace DB management opensource Software</p> 
+  <p>DOCUMENTATION</p>
+  
+  <form>
+    <div class="input-group">
+	<!--
+      <input type="email" class="form-control" size="50" placeholder="Email Address" required>
+	 -->
+      <div class="input-group-btn">
+	  <!--
+        <button type="button" class="btn btn-danger">Subscribe</button>
+		 -->
+      </div>
+    </div>
+  </form>
+</div>
+<div class="one">
+<h3> AmbSQL Command Line Interface</h3>
+<img src="ico.jpg">
+<h3>For AmbSQL Command Line Interface</h3>
+<p>
+<ul>
+	<li>To login to Database<br><p style="color:blue;">connect</p></li>
+	<li>To create new Table<br><p style="color:blue;">createtable(< table-name>, < column1-name> ,  < column2-name>, ....)</p></li>
+	<li>To enter the values in Table<br><p style="color:blue;">insertvalues(< table_name>, < column1-value> , < column2-value>, ...)</p></li>
+	<li>To show the Table schema<br><p style="color:blue;">showtable(< table_name>)</p></li>
+	<li>To show the Table values<br><p style="color:blue;">showvalues(< table_name>)</p></li>
+	<li>To Update all values of column<br><p style="color:blue;">updatevalue(< table_name> , < assignment>)</p></li>
+	<li>To Update the values of column<br><p style="color:blue;">updatevalue(< table_name> , < assignment> , < condition>)(e.g- updateTable(ab, name=jack, age=23))</p></li>
+	<li>To truncate the Table<br><p style="color:blue;">deletetable(< table_name>)</p></li>
+	<li>To delete row(s) from Table<br><p style="color:blue;">deletetable(< table_name> , < condition>)(e.g- deletetable(ab,name==jack))</p></li>
+	<li>To drop the Table<br><p style="color:blue;">droptable(<table_name>)</p></li>
+	<li>To rename Table Name<br><p style="color:blue;">altertable(< old-table_name> , < new-table_name>)</p></li>
+	<li>To create new User<br><p style="color:blue;">createuser(< user_name> , < password>)</p></li>
+	<li>To delete a User<br><p style="color:blue;">deleteuser(< user_name>)</p></li>
+	<li>To Logout<br><p style="color:blue;">logout()</p></li>
+	<li>To clear the Screen<br><p style="color:blue;">clear()</p></li>
+</ul>
+</p>
+</div>
+</body>
+</html>
