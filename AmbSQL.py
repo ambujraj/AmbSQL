@@ -541,7 +541,7 @@ def main(cnt):
             # Documentation
             elif(command == "docs()"):
                 print("")
-                print("Copyright (c) 2018, Ambuj. All rights reserved.")
+                print("Copyright (c) 2020, Ambuj. All rights reserved.")
                 print("")
                 print("\tconnect                                                                 - To login to Database")
                 print("\tcreatetable(<table-name>, <column1-name> , <column2-name>, ....)        - To create new Table")
