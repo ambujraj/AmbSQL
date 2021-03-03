@@ -61,7 +61,7 @@ If you installed <b>AmbSQL.exe</b>, below is the sample code:<br>
 
 ## Important Notice
 
-**AmbSQL** has been selected at [GirlScript Summer of Code 2020](https://www.gssoc.tech/)!!! 
+**AmbSQL** has been selected at [GirlScript Summer of Code 2021](https://www.gssoc.tech/)!!! 
 <p align="center">
 <img src="https://www.gssoc.tech/images/type-logo.png">
 </p>
@@ -70,10 +70,6 @@ If you installed <b>AmbSQL.exe</b>, below is the sample code:<br>
 - Ambuj Raj <p>[<img src="https://img.icons8.com/windows/32/000000/github-2.png" display = "inline-block">](https://github.com/ambujraj) [<img src="https://img.icons8.com/ios-glyphs/30/000000/linkedin-2.png"/>](https://www.linkedin.com/in/ambujraj/)</p>
 
 ## 👬  Mentors
-- Himanshu Awasthi<p>[<img src="https://img.icons8.com/windows/32/000000/github-2.png" display = "inline-block">](https://github.com/IHackPy) [<img src="https://img.icons8.com/ios-glyphs/30/000000/linkedin-2.png"/>](https://www.linkedin.com/in/himanshu-awasthi-9a7b2712a/)</p>
-- Vishal Katiyar<p>[<img src="https://img.icons8.com/windows/32/000000/github-2.png" display = "inline-block">](https://github.com/17-Vishal) [<img src="https://img.icons8.com/ios-glyphs/30/000000/linkedin-2.png"/>](https://www.linkedin.com/in/vishal-katiyar-122465170/)</p>
-- Diksha Goyal<p>[<img src="https://img.icons8.com/windows/32/000000/github-2.png" display = "inline-block">](https://github.com/dikshagoyal26) [<img src="https://img.icons8.com/ios-glyphs/30/000000/linkedin-2.png"/>](https://www.linkedin.com/in/dikshagoyal26/)</p>
-- Janvi Talreja<p>[<img src="https://img.icons8.com/windows/32/000000/github-2.png" display = "inline-block">](https://github.com/janvi04) [<img src="https://img.icons8.com/ios-glyphs/30/000000/linkedin-2.png"/>](https://www.linkedin.com/in/janvit04/)</p>
 
 Feel free to ask your queries!! 🙌
 
