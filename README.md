@@ -73,6 +73,18 @@ If you installed <b>AmbSQL.exe</b>, below is the sample code:<br>
 
 Feel free to ask your queries!! 🙌
 
+## Contributors 
+
+<table>
+	<tr>
+		<td>
+		<a href="https://github.com/ambujraj/AmbSQL/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=ambujraj/AmbSQL" />
+</a>
+		</td>
+	</tr>
+</table>
+
 ## Slack Channel
 
 - [#proj_ambsql](https://gssoc20.slack.com/messages/proj_ambsql)
