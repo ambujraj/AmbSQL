@@ -15,15 +15,16 @@
   body {
     font: 400 15px Lato, sans-serif;
     line-height: 1.8;
-    color: #818181;
+    color: #282846;
   }
   h2 {
-    font-size: 24px;
+    font-size: 30px;
     text-transform: uppercase;
-    color: #303030;
+    color: #151515;
     font-weight: 600;
     margin-bottom: 30px;
   }
+
   h4 {
     font-size: 19px;
     line-height: 1.375em;
@@ -32,7 +33,7 @@
     margin-bottom: 30px;
   }  
   .jumbotron {
-    background-color: #1c1d71;
+    background-color: #301b3f;
     color: #fff;
     padding: 100px 25px;
     font-family: Montserrat, sans-serif;
@@ -48,7 +49,7 @@
     font-size: 50px;
   }
   .logo {
-    color: #1c1d71;
+    color: #301b3f;
     font-size: 200px;
   }
   .thumbnail {
@@ -121,7 +122,7 @@
   }
   .navbar {
     margin-bottom: 0;
-    background-color: #1c1d71;
+    background-color: #151515;
     z-index: 9999;
     border: 0;
     font-size: 12px !important;
@@ -130,11 +131,17 @@
     border-radius: 0;
     font-family: Montserrat, sans-serif;
   }
+
+  .navbar:hover {
+    transform: scale(1.05);
+	box-shadow: 2px 3px 10px #1c1d71;
+  }
+
   .navbar li a, .navbar .navbar-brand {
     color: #fff !important;
   }
   .navbar-nav li a:hover, .navbar-nav li.active a {
-    color: #1c1d71 !important;
+    color: black !important;
     background-color: #fff !important;
   }
   .navbar-default .navbar-toggle {
@@ -183,7 +190,7 @@
       width: 100%;
       margin-bottom: 35px;
     }
-  }
+
   @media screen and (max-width: 480px) {
     .logo {
       font-size: 150px;
@@ -239,7 +246,7 @@
       <h2>About US</h2><br>
       <h4>AmbSQL is a Relational Database Management System which created with keeping in focus the speed and the ease to operate on.</h4><br>
       <p>Made With ❤ in Python3</p>
-      <br><div class="btn btn-default btn-lg"><a href="https://github.com/ambujraj/AmbSQL#ambsql"  style = "text-decoration:none;" >Check out our source code at GitHub</a></div>
+      <br><div class="btn btn-default btn-lg"><a href="https://github.com/ambujraj/AmbSQL#ambsql"  style = "text-decoration:none;" target="_blank" >Check out our source code at GitHub</a></div>
     </div>
     <div class="col-sm-4">
       <span class="glyphicon glyphicon-volume-up logo"></span>
@@ -259,7 +266,7 @@
 	  <li>To create new Table :createtable(&lt;table-name&gt;, &lt;column1-name&gt; , &lt;column2-name&gt;, ....) </li>
 	  <li>To enter the values in Table:insertvalues(&lt;table_name&gt;, &lt;column1-value&gt; , &lt;column2-value&gt;, ...)</li> 
 	  </ul>
-	  <br><strong>Refer our whole documentation at <a href=Documentation.html>Link</a></strong><br>
+	  <br><strong>Refer our whole documentation at <a href=Documentation.html style="text-decoration: none;" target="_blank">Link</a></strong><br>
       <p> This program is compatible only with python - 3.x</p>
     </div>
   </div>
@@ -294,7 +301,7 @@
     <div class="col-sm-8">
       <h2>Installation</h2><br>
       <h4><strong>For Command-line Interface:</strong> <br><br>
-	      <ul><li>Download the AmbSQL.exe <a href="https://s3.amazonaws.com/ambsql/AmbSQL.exe">here</a> and run it on Your PC.</li>
+	      <ul><li>Download the AmbSQL.exe <a href="https://s3.amazonaws.com/ambsql/AmbSQL.exe" style="text-decoration: none" target="_blank">here</a> and run it on Your PC.</li>
 	  <li>AmbSQL can also be downloaded from https://ambujraj.github.io/AmbSQL/download/. </li>
 	  </ul><br><br>
 	  
@@ -303,7 +310,7 @@
 	  <li>Manually using CLI:<ul><li>git clone https://github.com/ambujraj/AmbSQL.git</li><li>cd AmbSQL</li><li>sudo python3 setup.py install (Linux and MacOS) or python setup.py install (Windows)</li></ul> </li>
 	  <li>Manually using UI: Go to the repo on github => Click on 'Clone or Download' => Click on 'Download ZIP' and save it on your local disk.</li>
 	  </ul>
-	  <br><strong>Refer our whole installation and usuage guide at <a href="https://github.com/ambujraj/AmbSQL">Link</a></strong></h4><br>
+	  <br><strong>Refer our whole installation and usuage guide at <a href="https://github.com/ambujraj/AmbSQL" style="text-decoration: none;" target="_blank">Link</a></strong></h4><br>
       <p> This program is compatible only with python - 3.x</p>
     </div>
 	<div class="col-sm-4">
@@ -316,7 +323,7 @@
 <!-- Container (contribute Section) -->
 <div id="contribute" class="container-fluid ">
   <h1 class="text-center">Help Us Improve</h1>
-  <h3 style = "text-align:center;">You can suggest us of new improvements you want by creating new Issue <a href="https://github.com/ambujraj/AmbSQL/issues">here</a></h3>
+  <h3 style = "text-align:center;">You can suggest us of new improvements you want by creating new Issue <a href="https://github.com/ambujraj/AmbSQL/issues" style="text-decoration: none;" target="_blank">here</a></h3>
 </div>
 
 
@@ -324,7 +331,7 @@
   <a href="#myPage" title="To Top">
     <span class="glyphicon glyphicon-chevron-up"></span>
   </a>
-  <p>Opensource Theme Made By <a href="https://github.com/ambujraj/AmbSQL#ambsql" title="Visit w3schools">AmbSQL</a></p>
+  <p>Opensource Theme Made By <a href="https://github.com/ambujraj/AmbSQL#ambsql" title="Visit w3schools" target="_blank">AmbSQL</a></p>
 </footer>
 
 <script>
