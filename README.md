@@ -67,7 +67,8 @@ If you installed <b>AmbSQL.exe</b>, below is the sample code:<br>
 </p>
 
 ## 👨 Project Admin
-- Ambuj Raj <p>[<img src="https://img.icons8.com/windows/32/000000/github-2.png" display = "inline-block">](https://github.com/ambujraj) [<img src="https://img.icons8.com/ios-glyphs/30/000000/linkedin-2.png"/>](https://www.linkedin.com/in/ambujraj/)</p>
+- Ambuj Raj
+<!-- <p>[<img src="https://img.icons8.com/windows/32/000000/github-2.png" display = "inline-block">](https://github.com/ambujraj) [<img src="https://img.icons8.com/ios-glyphs/30/000000/linkedin-2.png"/>](https://www.linkedin.com/in/ambujraj/)</p> -->
 
 ## 👬  Mentors
 
